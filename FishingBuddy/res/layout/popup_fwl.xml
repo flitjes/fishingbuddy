@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:minHeight="64dp" 
+    android:id="@+id/popup_fwl"      
+    >
+
+    <Button
+        android:id="@+id/btn_popup_fwl_ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"        
+        android:layout_alignTop="@+id/edWaterDescription"
+        android:layout_marginRight="35dp"
+        android:layout_marginTop="72dp"
+        android:text="Ok" />
+
+    <TextView
+        android:id="@+id/tvwName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"        
+        android:layout_alignParentLeft="true"
+        android:text="Name" />
+
+    <EditText
+        android:id="@+id/edWaterName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/tvwName"        
+        android:ems="10" />
+
+    <TextView
+        android:id="@+id/tvwDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/edWaterName"
+        android:layout_marginTop="18dp"
+        android:text="Description" />
+
+    <EditText
+        android:id="@+id/edWaterDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/tvwDescription"
+        android:ems="10"
+        android:inputType="textMultiLine" >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/btn_popup_fwl_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/btn_popup_fwl_ok"
+        android:layout_toRightOf="@+id/tvwDescription"
+        android:text="Cancel" />
+
+</RelativeLayout>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:minHeight="64dp">
+
+      <LinearLayout
+        android:id="@+id/ll_fwl_row"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"        
+        android:orientation="horizontal">
+    <ImageView
+        android:id="@+id/imageSwimPicturew"
+   		android:layout_width="96dp"
+	    android:layout_height="match_parent"
+	    android:src="@drawable/ic_launcher" />
+ <LinearLayout
+	        android:id="@+id/ll_sl_properties"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentLeft="true"
+	        android:layout_below="@+id/imageSwimPicturew"
+	        android:orientation="vertical" >
+      <TextView
+          android:id="@+id/tvLocw"
+          android:layout_width="97dp"
+          android:layout_height="32dp"
+          android:layout_below="@+id/tvNamew"
+          android:layout_alignParentRight="true"
+          android:text="tvLoc"
+          android:gravity="center_vertical" />
+
+      <TextView
+          android:id="@+id/tvNamew"
+          android:layout_width="97dp"
+          android:layout_height="32dp"
+          android:layout_alignParentRight="true"
+          android:layout_below="@+id/imageSwimPicture"
+          android:gravity="center_vertical"
+          android:text="tvName" />
+
+	    </LinearLayout>
+    </LinearLayout>
+      
+</RelativeLayout>

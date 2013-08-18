@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:minHeight="64dp" >
+
+    <LinearLayout
+        android:id="@+id/ll_sl_row"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"        
+        android:orientation="horizontal">
+        
+	    <ImageView
+	        android:id="@+id/imageSwimPicture"
+	        android:layout_width="96dp"
+	        android:layout_height="match_parent"
+	        android:src="@drawable/ic_launcher" />
+
+	    <LinearLayout
+	        android:id="@+id/ll_sl_properties"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentLeft="true"
+	        android:layout_below="@+id/imageSwimPicture"
+	        android:orientation="vertical" >
+	
+	        <TextView
+	            android:id="@+id/tvLoc"
+	            android:layout_width="97dp"
+	            android:layout_height="32dp"
+	            android:layout_above="@+id/tvName"
+	            android:layout_toRightOf="@+id/imageSwimPicture"
+	            android:gravity="center_vertical"
+	            android:text="tvLoc" />
+	
+	        <TextView
+	            android:id="@+id/tvName"
+	            android:layout_width="97dp"
+	            android:layout_height="32dp"
+	            android:layout_alignLeft="@+id/tvLoc"
+	            android:layout_below="@+id/imageSwimPicture"
+	            android:gravity="center_vertical"
+	            android:text="tvName" />
+	
+	        <TextView
+	            android:id="@+id/tvDescription"
+	            android:layout_width="97dp"
+	            android:layout_height="32dp"
+	            android:layout_below="@+id/tvName"
+	            android:layout_toRightOf="@+id/imageSwimPicture"
+	            android:gravity="center_vertical"
+	            android:text="tvDes" />
+	    </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

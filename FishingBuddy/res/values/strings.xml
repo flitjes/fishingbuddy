@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">FishingBuddy</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    <string name="fwl_name_activity">Fishing Waters</string>
+    <string name="sl_name_activity">Swims</string>
+    <string name="fm_name_activity">Fishing Maps</string>
+    <string name="MY_AD_UNIT_ID">a15210ba09c4a5e</string>
+
+</resources>
