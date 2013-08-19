@@ -18,8 +18,8 @@ import com.google.ads.AdRequest;
 import com.google.ads.AdSize;
 import com.google.ads.AdView;
 
-public class MainActivity extends Activity {	
-	private AdView adView;
+public class MainActivity extends Activity {
+	
 	 private FishingManager fm = null;
 	 
 	@Override
@@ -69,12 +69,14 @@ public class MainActivity extends Activity {
     private void GenerateData(){
         fm = (FishingManager)getApplication();
         GPSManager gpsm = new GPSManager(this);
-        fm.CreateFishingWater("Den Bosch", gpsm.getLocation(),"blabla");
-        fm.CreateFishingWater("Vught", gpsm.getLocation(),"blabla");
-        fm.CreateSwimForFishingWater(0, "ZuiderPlas", gpsm.getLocation(), "Fuckedup fishing");
-        fm.CreateSwimForFishingWater(0, "Provinciehuis", gpsm.getLocation(), "Fuckedup fishing");
-        fm.CreateSwimForFishingWater(1, "Dommel", gpsm.getLocation(), "Fuckedup fishing");
-        fm.CreateSwimForFishingWater(1, "Biescheloop", gpsm.getLocation(), "Fuckedup fishing");    
+        int x = 0,y = 1;       
+        	
+        fm.CreateFishingWater("Den Bosch" + (fm.getFishingwater().size()), gpsm.getLocation(),"blabla");
+        fm.CreateFishingWater("Vught"+(fm.getFishingwater().size() + 1), gpsm.getLocation(),"blabla");
+        fm.CreateSwimForFishingWater((fm.getFishingwater().size() - 2), "ZuiderPlas", gpsm.getLocation(), "Fuckedup fishing");
+        fm.CreateSwimForFishingWater((fm.getFishingwater().size() - 2), "Provinciehuis", gpsm.getLocation(), "Fuckedup fishing");
+        fm.CreateSwimForFishingWater((fm.getFishingwater().size() - 1), "Dommel", gpsm.getLocation(), "Fuckedup fishing");
+        fm.CreateSwimForFishingWater((fm.getFishingwater().size() - 1), "Biescheloop", gpsm.getLocation(), "Fuckedup fishing");    
     }
 
 }
