@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>     
+<?xml version="1.0" encoding="UTF-8"?>
 
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+<!--
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:map="http://schemas.android.com/apk/res-auto"
     android:id="@+id/the_map"
     android:layout_width="match_parent"
@@ -9,3 +10,25 @@
     map:cameraTilt="45"
     map:cameraZoom="14"
     />
+-->
+<!--  
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/the_map"
+            class="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+-->
+    
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity" >
+
+    <fragment
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        class="com.google.android.gms.maps.MapFragment" />
+
+</RelativeLayout> 

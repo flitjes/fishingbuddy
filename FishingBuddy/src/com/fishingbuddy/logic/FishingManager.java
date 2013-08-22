@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import android.app.Application;
 import android.location.Location;
 
@@ -22,6 +24,11 @@ public class FishingManager extends Application{
 		if(fisherman == null)
 			return false;
 		return true;
+	}
+	
+	public LatLng CurrentPosition(){
+		Location loc = gpsm.getLocation();
+		return new LatLng(loc.getLatitude(), loc.getLongitude());
 	}
 	public boolean CreateFishingWater(String name, Location loc,String description){
 		return fishingwater.add(new FishingWater(name,loc,description));
