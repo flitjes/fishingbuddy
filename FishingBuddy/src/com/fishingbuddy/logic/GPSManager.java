@@ -12,6 +12,8 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Settings;
 import android.util.Log;
+
+import com.google.android.maps.GeoPoint;
  
 public class GPSManager extends Service implements LocationListener {
  
@@ -43,7 +45,7 @@ public class GPSManager extends Service implements LocationListener {
         this.mContext = context;
         getLocation();
     }
- 
+
     public Location getLocation() {
         try {
             locationManager = (LocationManager) mContext

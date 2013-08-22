@@ -6,6 +6,7 @@ import android.os.Bundle;
 import com.fishingbuddy.R;
 import com.fishingbuddy.logic.FishingManager;
 import com.fishingbuddy.logic.FishingWater;
+import com.fishingbuddy.logic.Swim;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
@@ -34,8 +35,17 @@ public class FishingMaps extends Activity {
 	    for(FishingWater fw : fm.getFishingwater()){
 	    	LatLng position = new LatLng(fw.getLocation().getLatitude(), fw.getLocation().getLongitude());
 	    	Marker marker = map.addMarker(new MarkerOptions().position(position)
-	    	        .title(fw.getName()));
+	    	        .title(fw.getName()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+		    for(Swim sw : fw.getSwim()){
+		    	LatLng pos = new LatLng(sw.getLocation().getLatitude(), sw.getLocation().getLongitude());
+		    	Marker m = map.addMarker(new MarkerOptions()
+		    									.position(pos)
+		    									.title(fw.getName())   									
+		    	        );
+		    }	   
 	    }	   
+
+
 
 	    LatLng CURRENT = fm.CurrentPosition();
 	    map.moveCamera(CameraUpdateFactory.newLatLngZoom(CURRENT, 15));

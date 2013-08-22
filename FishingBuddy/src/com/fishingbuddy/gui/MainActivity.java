@@ -70,9 +70,9 @@ public class MainActivity extends Activity {
         fm = (FishingManager)getApplication();
         GPSManager gpsm = new GPSManager(this);
         int x = 0,y = 1;       
-        	
+        
         fm.CreateFishingWater("Den Bosch" + (fm.getFishingwater().size()), gpsm.getLocation(),"blabla");
-        fm.CreateFishingWater("Vught"+(fm.getFishingwater().size() + 1), gpsm.getLocation(),"blabla");
+        fm.CreateFishingWater("Dommel"+(fm.getFishingwater().size() + 1), gpsm.getLocation(),"blabla");
         fm.CreateSwimForFishingWater((fm.getFishingwater().size() - 2), "ZuiderPlas", gpsm.getLocation(), "Fuckedup fishing");
         fm.CreateSwimForFishingWater((fm.getFishingwater().size() - 2), "Provinciehuis", gpsm.getLocation(), "Fuckedup fishing");
         fm.CreateSwimForFishingWater((fm.getFishingwater().size() - 1), "Dommel", gpsm.getLocation(), "Fuckedup fishing");
