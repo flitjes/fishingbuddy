@@ -13,6 +13,7 @@ import android.os.IBinder;
 import android.provider.Settings;
 import android.util.Log;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.maps.GeoPoint;
  
 public class GPSManager extends Service implements LocationListener {
@@ -28,9 +29,7 @@ public class GPSManager extends Service implements LocationListener {
     // flag for GPS status
     boolean canGetLocation = false;
  
-    Location location; // location
-    double latitude; // latitude
-    double longitude; // longitude
+    LatLng position = null;
  
     // The minimum distance to change Updates in meters
     private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10; // 10 meters
@@ -46,7 +45,10 @@ public class GPSManager extends Service implements LocationListener {
         getLocation();
     }
 
-    public Location getLocation() {
+    public LatLng getLocation() {
+        Location location = null; // location
+        double latitude; // latitude
+        double longitude; // longitude
         try {
             locationManager = (LocationManager) mContext
                     .getSystemService(LOCATION_SERVICE);
@@ -98,12 +100,13 @@ public class GPSManager extends Service implements LocationListener {
                     }
                 }
             }
+            position = new LatLng(location.getLatitude(), location.getLongitude());
  
         } catch (Exception e) {
             e.printStackTrace();
-        }
- 
-        return location;
+        }      
+        
+        return position;
     }
      
     /**
@@ -119,25 +122,18 @@ public class GPSManager extends Service implements LocationListener {
     /**
      * Function to get latitude
      * */
-    public double getLatitude(){
-        if(location != null){
-            latitude = location.getLatitude();
-        }
-         
+    public double getLatitude(){        
+                       
         // return latitude
-        return latitude;
+        return  position.latitude;
     }
      
     /**
      * Function to get longitude
      * */
-    public double getLongitude(){
-        if(location != null){
-            longitude = location.getLongitude();
-        }
-         
+    public double getLongitude(){   
         // return longitude
-        return longitude;
+        return position.longitude;
     }
      
     /**
