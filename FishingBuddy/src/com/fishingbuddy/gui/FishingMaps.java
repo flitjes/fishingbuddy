@@ -33,14 +33,12 @@ public class FishingMaps extends Activity {
 	        .getMap();
 	    
 	    for(FishingWater fw : fm.getFishingwater()){
-	    	LatLng position = new LatLng(fw.getLocation().getLatitude(), fw.getLocation().getLongitude());
-	    	Marker marker = map.addMarker(new MarkerOptions().position(position)
+	    	Marker marker = map.addMarker(new MarkerOptions().position(fw.getLocation())
 	    	        .title(fw.getName()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
-		    for(Swim sw : fw.getSwim()){
-		    	LatLng pos = new LatLng(sw.getLocation().getLatitude(), sw.getLocation().getLongitude());
+		    for(Swim sw : fw.getSwim()){		    	
 		    	Marker m = map.addMarker(new MarkerOptions()
-		    									.position(pos)
-		    									.title(fw.getName())   									
+		    									.position(sw.getLocation())
+		    									.title("Fishing Water: " + fw.getName() + " Swim: " + sw.getName())   									
 		    	        );
 		    }	   
 	    }	   

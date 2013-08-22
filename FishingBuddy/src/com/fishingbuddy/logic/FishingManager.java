@@ -26,11 +26,10 @@ public class FishingManager extends Application{
 		return true;
 	}
 	
-	public LatLng CurrentPosition(){
-		Location loc = gpsm.getLocation();
-		return new LatLng(loc.getLatitude(), loc.getLongitude());
+	public LatLng CurrentPosition(){		
+		return gpsm.getLocation();
 	}
-	public boolean CreateFishingWater(String name, Location loc,String description){
+	public boolean CreateFishingWater(String name, LatLng loc,String description){
 		return fishingwater.add(new FishingWater(name,loc,description));
 	}
 	public boolean CreateFishingWater(String name, String description){
@@ -47,7 +46,7 @@ public class FishingManager extends Application{
 		return index;
 	}
 	
-	public int CreateSwimForFishingWater(int fishinwater_index, String name, Location location, String description){
+	public int CreateSwimForFishingWater(int fishinwater_index, String name, LatLng location, String description){
 		int index = getFishingwater().get(fishinwater_index).CreateSwim(name, location, description);		
 		return index;
 	}

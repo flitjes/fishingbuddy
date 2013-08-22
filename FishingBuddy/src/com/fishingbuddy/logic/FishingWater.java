@@ -5,9 +5,11 @@ import java.util.List;
 
 import android.location.Location;
 
+import com.google.android.gms.maps.model.LatLng;
+
 public class FishingWater {
 	private String name = null;
-	private Location location = null;
+	private LatLng location = null;
 	private List<Swim> swim = null;
 	private String description = null;
 	public List<Swim> getSwim() {
@@ -28,7 +30,7 @@ public class FishingWater {
 
 	private List<Fish> fish = null;
 	
-	public FishingWater(String name, Location location,String description) {
+	public FishingWater(String name, LatLng location,String description) {
 		// TODO Auto-generated constructor stub
 		this.setName(name);
 		this.setLocation(location);
@@ -37,7 +39,7 @@ public class FishingWater {
 		fish = new ArrayList<Fish>();
 	}
 	
-	public int CreateSwim(String name, Location location, String description){
+	public int CreateSwim(String name, LatLng location, String description){
 		Swim c_swim;
 		c_swim = new Swim(name, location, description);
 		swim.add(c_swim);
@@ -57,11 +59,11 @@ public class FishingWater {
 		this.name = name;
 	}
 
-	public Location getLocation() {
+	public LatLng getLocation() {
 		return location;
 	}
 
-	public void setLocation(Location location) {
+	public void setLocation(LatLng location) {
 		this.location = location;
 	}
 

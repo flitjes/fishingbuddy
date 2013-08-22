@@ -17,6 +17,7 @@ import com.fishingbuddy.logic.GPSManager;
 import com.google.ads.AdRequest;
 import com.google.ads.AdSize;
 import com.google.ads.AdView;
+import com.google.android.gms.maps.model.LatLng;
 
 public class MainActivity extends Activity {
 	
@@ -65,18 +66,22 @@ public class MainActivity extends Activity {
         }
     }
     
-    
+    Boolean created = false;
     private void GenerateData(){
-        fm = (FishingManager)getApplication();
+        if(!created){
+    	fm = (FishingManager)getApplication();
         GPSManager gpsm = new GPSManager(this);
         int x = 0,y = 1;       
-        
-        fm.CreateFishingWater("Den Bosch" + (fm.getFishingwater().size()), gpsm.getLocation(),"blabla");
-        fm.CreateFishingWater("Dommel"+(fm.getFishingwater().size() + 1), gpsm.getLocation(),"blabla");
-        fm.CreateSwimForFishingWater((fm.getFishingwater().size() - 2), "ZuiderPlas", gpsm.getLocation(), "Fuckedup fishing");
-        fm.CreateSwimForFishingWater((fm.getFishingwater().size() - 2), "Provinciehuis", gpsm.getLocation(), "Fuckedup fishing");
-        fm.CreateSwimForFishingWater((fm.getFishingwater().size() - 1), "Dommel", gpsm.getLocation(), "Fuckedup fishing");
-        fm.CreateSwimForFishingWater((fm.getFishingwater().size() - 1), "Biescheloop", gpsm.getLocation(), "Fuckedup fishing");    
+       
+        fm.CreateFishingWater("Den Bosch", gpsm.getLocation(),"blabla");
+        fm.CreateFishingWater("Dommel", new LatLng(51.6635,5.3046),"blabla");
+        fm.CreateFishingWater("Biescheloop", new LatLng(51.6451,5.3201),"blabla");
+        fm.CreateSwimForFishingWater((fm.getFishingwater().size() - 3), "ZuiderPlas",new LatLng(51.674,5.319) , "Fuckedup fishing");
+        fm.CreateSwimForFishingWater((fm.getFishingwater().size() - 3), "Provinciehuis", new LatLng(51.677,5.331), "Fuckedup fishing");
+        fm.CreateSwimForFishingWater((fm.getFishingwater().size() - 2), "A2", new LatLng(51.6644,5.3053), "Fuckedup fishing");
+        fm.CreateSwimForFishingWater((fm.getFishingwater().size() - 1), "Biescheloop",  new LatLng(51.6478,5.3200), "Fuckedup fishing");
+        created = true;
+        }
     }
 
 }

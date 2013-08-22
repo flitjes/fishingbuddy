@@ -1,15 +1,16 @@
 package com.fishingbuddy.logic;
 
 import android.graphics.Bitmap;
-import android.location.Location;
+
+import com.google.android.gms.maps.model.LatLng;
 
 public class Swim {
 	private String name = null;
-	private Location location = null;
+	private LatLng location = null;
 	private String description = null;
 	private Bitmap picture = null;
 
-	public Swim(String name, Location location, String description) {
+	public Swim(String name, LatLng location, String description) {
 		// TODO Auto-generated constructor stub
 		this.name = name;
 		this.location = location;
@@ -24,11 +25,11 @@ public class Swim {
 		this.name = name;
 	}
 
-	public Location getLocation() {
+	public LatLng getLocation() {
 		return location;
 	}
 
-	public void setLocation(Location location) {
+	public void setLocation(LatLng location) {
 		this.location = location;
 	}
 

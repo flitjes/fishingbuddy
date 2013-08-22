@@ -1,11 +1,8 @@
 package com.fishingbuddy.gui;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +12,7 @@ import android.widget.TextView;
 
 import com.fishingbuddy.R;
 import com.fishingbuddy.logic.FishingWater;
-import com.fishingbuddy.logic.Swim;
+import com.google.android.gms.maps.model.LatLng;
 
 public class WaterAdapter extends ArrayAdapter<FishingWater>{
 
@@ -40,10 +37,10 @@ public class WaterAdapter extends ArrayAdapter<FishingWater>{
         View rowView = inflater.inflate(rowResourceId, parent, false);
         ImageView imageView = (ImageView) rowView.findViewById(R.id.imageSwimPicturew);
         TextView textView = (TextView) rowView.findViewById(R.id.tvNamew);
-        TextView textLoc = (TextView) rowView.findViewById(R.id.tvLocw);
+        TextView textLoc = (TextView) rowView.findViewById(R.id.tvLocw);        
         
         textView.setText(fishingwater.get(position).getName());
-        textLoc.setText(fishingwater.get(position).getLocation().getLatitude() + " " + fishingwater.get(position).getLocation().getLongitude());  
+        textLoc.setText(fishingwater.get(position).getLocation().latitude + " " + fishingwater.get(position).getLocation().longitude);  
       
       
         return rowView;

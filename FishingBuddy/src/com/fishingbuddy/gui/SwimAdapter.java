@@ -43,7 +43,7 @@ public class SwimAdapter extends ArrayAdapter<Swim>{
         TextView textDes = (TextView) rowView.findViewById(R.id.tvDescription);
         
         textView.setText(swim.get(position).getName());
-        textLoc.setText(swim.get(position).getLocation().getLatitude() + " " + swim.get(position).getLocation().getLongitude());  
+        textLoc.setText(swim.get(position).getLocation().latitude + " " + swim.get(position).getLocation().longitude);  
         textDes.setText(swim.get(position).getDescription());
       
         return rowView;
