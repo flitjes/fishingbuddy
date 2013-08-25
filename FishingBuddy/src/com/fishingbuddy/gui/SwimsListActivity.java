@@ -28,7 +28,7 @@ import com.fishingbuddy.logic.GPSManager;
 public class SwimsListActivity extends Activity{
 	static public String KEY_ID = "KEY_ID";
 	final int CONTEXT_MENU_DELETE_ITEM =1;
-	final int CONTEXT_MENU_NEW_ITEM =2;	 
+	final int CONTEXT_MENU_UPDATE_ITEM =2;	 
 	 private ListView listView = null;
 	 private FishingManager fm = null;
 	 private int fishingwater_id = -1;
@@ -41,7 +41,7 @@ public class SwimsListActivity extends Activity{
 	 public void onCreateContextMenu(ContextMenu menu, View v,ContextMenu.ContextMenuInfo menuInfo) {
 	           
 	  menu.add(Menu.NONE, CONTEXT_MENU_DELETE_ITEM, Menu.NONE, "Delete Swim");
-	  menu.add(Menu.NONE, CONTEXT_MENU_NEW_ITEM, Menu.NONE, "Add New Swim");	  
+	  menu.add(Menu.NONE, CONTEXT_MENU_UPDATE_ITEM, Menu.NONE, "Update Swim");	  
 	 }
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -69,8 +69,8 @@ public class SwimsListActivity extends Activity{
 	            	  	fm.DeleteSwimFromFishingWater(fishingwater_id,info.position);
 	            	  	RefreshSwims();
 	                   return(true);
-	             case CONTEXT_MENU_NEW_ITEM:	     
-	            	 	ShowPopup();
+	             case CONTEXT_MENU_UPDATE_ITEM:	     
+	            	 	ShowPopup(info.position);
 	                   return(true); 
 	             
 	             
@@ -98,7 +98,7 @@ public class SwimsListActivity extends Activity{
         switch (item.getItemId())
         {
         case R.id.sl_new_menu:
-        	ShowPopup();
+        	
             return true;
         default:
             return super.onOptionsItemSelected(item);
@@ -115,11 +115,12 @@ public class SwimsListActivity extends Activity{
 	       listView.setAdapter(adapter);        
 	         
 	}
-	private void ShowPopup(){
+	private void ShowPopup(final int swim_index){
 		  RelativeLayout viewGroup = (RelativeLayout)findViewById(R.id.popup_sl);
-   	   LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+   	   LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);   	   
    	   popup_layout = layoutInflater.inflate(R.layout.popup_swims, viewGroup);
-   	 
+   	((EditText)popup_layout.findViewById(R.id.edSwimDescription)).setText(fm.getFishingwater().get(fishingwater_id).getSwim().get(swim_index).getDescription());
+	   ((EditText)popup_layout.findViewById(R.id.edSwimName)).setText(fm.getFishingwater().get(fishingwater_id).getSwim().get(swim_index).getName());
    	   // Creating the PopupWindow
    	   popup = new PopupWindow(this);
    	   popup.setContentView(popup_layout);
@@ -141,7 +142,7 @@ public class SwimsListActivity extends Activity{
 					String swim_name, swim_description;
 					swim_name = ((EditText)popup_layout.findViewById(R.id.edSwimName)).getText().toString();
 		            swim_description = ((EditText)popup_layout.findViewById(R.id.edSwimDescription)).getText().toString();
-		            fm.CreateSwimForFishingWater(fishingwater_id,swim_name,swim_description);					            
+		            fm.UpdateSwimForFishingWater(fishingwater_id, swim_index, swim_name,swim_description,null);					            
 		            popup.dismiss();					            
 					RefreshSwims();
 				}

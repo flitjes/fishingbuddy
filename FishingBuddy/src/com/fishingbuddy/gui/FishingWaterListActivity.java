@@ -29,7 +29,7 @@ import com.fishingbuddy.logic.GPSManager;
 public class FishingWaterListActivity extends Activity {	
 
 	 final int CONTEXT_MENU_DELETE_ITEM =1;
-	 final int CONTEXT_MENU_NEW_ITEM =2;
+	 final int CONTEXT_MENU_UPDATE_ITEM =2;
 	 final int CONTEXT_MENU_SHOW_SWIMS = 3;
 	 private ListView listView = null;
 	 private FishingManager fm = null; 
@@ -42,7 +42,7 @@ public class FishingWaterListActivity extends Activity {
 	 public void onCreateContextMenu(ContextMenu menu, View v,ContextMenu.ContextMenuInfo menuInfo) {
 	           
 	  menu.add(Menu.NONE, CONTEXT_MENU_DELETE_ITEM, Menu.NONE, "Delete Fishing water");
-	  menu.add(Menu.NONE, CONTEXT_MENU_NEW_ITEM, Menu.NONE, "Add New Fishing water");
+	  menu.add(Menu.NONE, CONTEXT_MENU_UPDATE_ITEM, Menu.NONE, "Update Fishing water");
 	  menu.add(Menu.NONE, CONTEXT_MENU_SHOW_SWIMS, Menu.NONE, "Show Swims");
 	 }
 	@Override
@@ -73,8 +73,8 @@ public class FishingWaterListActivity extends Activity {
 	            	  	fm.DeleteFishingWater(info.position);
 	            	  	RefreshFishingWaters();
 	                   return(true);
-	             case CONTEXT_MENU_NEW_ITEM:	     
-	            	 	ShowPopup();
+	             case CONTEXT_MENU_UPDATE_ITEM:	     
+	            	 	ShowPopup(info.position);
 	                   return(true);  
 	             case CONTEXT_MENU_SHOW_SWIMS:
 	            	 ShowSwims(info.position);
@@ -102,8 +102,7 @@ public class FishingWaterListActivity extends Activity {
          
         switch (item.getItemId())
         {
-        case R.id.flw_new_menu:
-        	ShowPopup();
+        case R.id.flw_new_menu:        	
             return true;
         default:
             return super.onOptionsItemSelected(item);
@@ -127,10 +126,14 @@ public class FishingWaterListActivity extends Activity {
 	       listView.setAdapter(adapter); 
 	}
 	
-	private void ShowPopup(){
+	private void ShowPopup(final int fishingwater_index){
  	   RelativeLayout viewGroup = (RelativeLayout)findViewById(R.id.popup_fwl);
 	   LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+	   	   
 	   popup_layout = layoutInflater.inflate(R.layout.popup_fwl, viewGroup);
+	   
+	   ((EditText)popup_layout.findViewById(R.id.edWaterName)).setText(fm.getFishingwater().get(fishingwater_index).getName());
+	   ((EditText)popup_layout.findViewById(R.id.edWaterDescription)).setText(fm.getFishingwater().get(fishingwater_index).getDescription());
 	 
 	   // Creating the PopupWindow
 	   popup = new PopupWindow(this);
@@ -153,7 +156,7 @@ public class FishingWaterListActivity extends Activity {
 				String water_name, water_description;
 				water_name = ((EditText)popup_layout.findViewById(R.id.edWaterName)).getText().toString();
 	            water_description = ((EditText)popup_layout.findViewById(R.id.edWaterDescription)).getText().toString();
-	            fm.CreateFishingWater(water_name,water_description);					            
+	            fm.UpdateFishingWater(fishingwater_index,water_name,water_description,null);					            
 	            popup.dismiss();
 	            RefreshFishingWaters();
 				

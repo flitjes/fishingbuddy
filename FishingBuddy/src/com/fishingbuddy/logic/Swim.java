@@ -16,6 +16,14 @@ public class Swim {
 		this.location = location;
 		this.description = description;		
 	}
+	public void UpdateSwim(String name,LatLng location, String description){
+		if(name != null)
+			this.name = name;
+		if(location != null)
+			this.location =location;
+		if(description != null)
+			this.description = description;
+	}
 
 	public String getName() {
 		return name;

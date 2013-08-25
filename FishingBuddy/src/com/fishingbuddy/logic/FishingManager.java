@@ -40,6 +40,12 @@ public class FishingManager extends Application{
 		fishingwater.remove(fishingwater_index);
 		return true;
 	}
+	public void UpdateFishingWater(int fishingwater_index, String name, String description, LatLng location){
+		getFishingwater().get(fishingwater_index).UpdateFishingWater(name, description, location);
+	}
+	public void UpdateSwimForFishingWater(int fishinwater_index, int swim_index, String name, String description,LatLng location){
+		getFishingwater().get(fishinwater_index).UpdateSwim(swim_index, name, description, location);
+	}
 	
 	public int CreateSwimForFishingWater(int fishinwater_index, String name, String description){
 		if(getFishingwater().size() != fishinwater_index)

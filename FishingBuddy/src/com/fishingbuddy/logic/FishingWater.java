@@ -45,6 +45,18 @@ public class FishingWater {
 		swim.add(c_swim);
 		return  swim.size() - 1;
 	}
+	public void UpdateFishingWater(String name, String description,LatLng location){
+		if(name != null)
+			this.name = name;
+		if(description != null)
+			this.description = description;
+		if(location != null)
+			this.location = location;
+	}
+	
+	public void UpdateSwim(int index, String name, String description,LatLng location){
+		getSwim().get(index).UpdateSwim(name, location, description);
+	}
 	
 	public boolean AddFish(Fish fish)
 	{
