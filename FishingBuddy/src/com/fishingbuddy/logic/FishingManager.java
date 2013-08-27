@@ -4,19 +4,19 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.google.android.gms.maps.model.LatLng;
-
 import android.app.Application;
-import android.location.Location;
+import android.widget.Toast;
+
+import com.google.android.gms.maps.model.LatLng;
 
 public class FishingManager extends Application{	
 	private List<FishingWater> fishingwater = new ArrayList<FishingWater>();
 	private static Fisherman fisherman = null;
 	private List<Fish> all_known_fish = new ArrayList<Fish>();
-	private GPSManager gpsm = new GPSManager(this);
+	private GPSManager gpsm = new GPSManager(this);	
 	public FishingManager() {
 		/*Get all known fish*/
-		fillListWithFish();
+		fillListWithFish();		
 	}
 	
 	public boolean CreateFisherman(String name, Date birthday){
