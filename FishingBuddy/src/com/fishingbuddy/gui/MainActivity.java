@@ -13,16 +13,18 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.fishingbuddy.R;
+import com.fishingbuddy.logic.Catch;
 import com.fishingbuddy.logic.FishingManager;
 import com.fishingbuddy.logic.GPSManager;
-import com.fishingbuddy.logic.JSONWeatherParser;
-import com.fishingbuddy.logic.WeatherHttpClient;
-import com.fishingbuddy.logic.WeatherModel.Weather;
+import com.fishingbuddy.logic.Weather.JSONWeatherParser;
+import com.fishingbuddy.logic.Weather.WeatherHttpClient;
+import com.fishingbuddy.logic.Weather.Model.Weather;
 import com.google.android.gms.maps.model.LatLng;
 
 public class MainActivity extends Activity {
 
 	private FishingManager fm = null;
+	Weather weather = new Weather();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +58,7 @@ public class MainActivity extends Activity {
 		case R.id.itGen:
 			// GenerateData();
 			JSONWeatherTask task = new JSONWeatherTask();
-			task.execute(new GPSManager(this).getLocation());
-
+			task.execute(new GPSManager(this).getLocation());			
 			return true;
 		case R.id.itMaps:
 			Intent fishingmaps_activity = new Intent(this, FishingMaps.class);
@@ -119,7 +120,9 @@ public class MainActivity extends Activity {
 		protected void onPostExecute(Weather weather) {
 			super.onPostExecute(weather);
 			Log.d("Ẅeather", "Temperature is:"
-					+ weather.temperature.getTemp());			
+					+ weather.temperature.getTemp());		
+			Catch c = new Catch(fm.getAll_known_fish().get(0),fm.getFishingwater().get(0).getSwim().get(0),"Test",null,fm.getGear().getBait(),fm.getGear().getHook_bait().get(0), fm.getGear().getRigz().get(0),weather);
+			fm.CreateCatch(c);
 		}
 	}
 

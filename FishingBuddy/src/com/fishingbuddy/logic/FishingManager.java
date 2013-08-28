@@ -5,8 +5,8 @@ import java.util.Date;
 import java.util.List;
 
 import android.app.Application;
-import android.widget.Toast;
 
+import com.fishingbuddy.logic.Gear.Gear;
 import com.google.android.gms.maps.model.LatLng;
 
 public class FishingManager extends Application{	
@@ -14,6 +14,9 @@ public class FishingManager extends Application{
 	private static Fisherman fisherman = null;
 	private List<Fish> all_known_fish = new ArrayList<Fish>();
 	private GPSManager gpsm = new GPSManager(this);	
+	private List<Catch> catches = new ArrayList<Catch>();
+	private Gear gear = new Gear();
+	
 	public FishingManager() {
 		/*Get all known fish*/
 		fillListWithFish();		
@@ -25,6 +28,12 @@ public class FishingManager extends Application{
 			return false;
 		return true;
 	}
+	
+	public void CreateCatch(Catch c)
+	{
+		catches.add(c);
+	}
+	
 	
 	public LatLng CurrentPosition(){		
 		return gpsm.getLocation();
@@ -74,7 +83,8 @@ public class FishingManager extends Application{
 	{
 		/*Todo: Get a list with all fish from somehwere*/
 		boolean done = false;
-		setAll_known_fish(null);
+		Fish f = new Fish();
+		all_known_fish.add(f);
 		return done;
 	}
 
@@ -85,4 +95,22 @@ public class FishingManager extends Application{
 	public void setAll_known_fish(List<Fish> all_known_fish) {
 		this.all_known_fish = all_known_fish;
 	}
+
+	public List<Catch> getCatches() {
+		return catches;
+	}
+
+	public void setCatches(List<Catch> catches) {
+		this.catches = catches;
+	}
+
+	public Gear getGear() {
+		return gear;
+	}
+
+	public void setGear(Gear gear) {
+		this.gear = gear;
+	}
+	
+	
 }

@@ -1,4 +1,4 @@
-package com.fishingbuddy.logic.WeatherModel;
+package com.fishingbuddy.logic.Weather.Model;
 
 /**
  * This is a tutorial source code 

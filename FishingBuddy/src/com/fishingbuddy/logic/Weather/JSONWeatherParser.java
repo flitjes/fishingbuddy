@@ -1,4 +1,4 @@
-package com.fishingbuddy.logic;
+package com.fishingbuddy.logic.Weather;
 
 /**
  * This is a tutorial source code 
@@ -16,8 +16,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.fishingbuddy.logic.WeatherModel.Location;
-import com.fishingbuddy.logic.WeatherModel.Weather;
+import com.fishingbuddy.logic.Weather.Model.Location;
+import com.fishingbuddy.logic.Weather.Model.Weather;
 
 /*
  * Copyright (C) 2013 Surviving with Android (http://www.survivingwithandroid.com)

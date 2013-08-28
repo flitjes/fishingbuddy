@@ -1,4 +1,4 @@
-package com.fishingbuddy.logic;
+package com.fishingbuddy.logic.Weather;
 
 /**
  * This is a tutorial source code 
