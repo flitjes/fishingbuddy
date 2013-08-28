@@ -14,4 +14,42 @@
                          ads:adSize="BANNER"
                          ads:testDevices="TEST_EMULATOR, 653261576202928890201CF404DA5F58"
                          ads:loadAdOnCreate="true"/>
+
+                  <Button
+                      android:id="@+id/btnCatch"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_alignParentLeft="true"
+                      android:layout_alignParentRight="true"
+                      android:layout_below="@+id/adView"
+                      android:layout_marginTop="19dp"
+                      android:text="Create Catch" />
+
+                  <Button
+                      android:id="@+id/btnMaps"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_alignParentLeft="true"
+                      android:layout_alignParentRight="true"
+                      android:layout_below="@+id/btnCatch"
+                      android:text="Show Maps" />
+
+                  <Button
+                      android:id="@+id/btnShowSwims"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_alignParentLeft="true"
+                      android:layout_alignParentRight="true"
+                      android:layout_below="@+id/btnMaps"
+                      android:text="Show Swims" />
+
+                  <TextView
+                      android:id="@+id/tvWeather"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_alignParentLeft="true"
+                      android:layout_below="@+id/btnShowSwims"
+                      android:layout_marginTop="23dp"
+                      android:text="" />
+
 </RelativeLayout>

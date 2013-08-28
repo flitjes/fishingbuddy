@@ -10,7 +10,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.fishingbuddy.R;
 import com.fishingbuddy.logic.Catch;
@@ -21,17 +24,23 @@ import com.fishingbuddy.logic.Weather.WeatherHttpClient;
 import com.fishingbuddy.logic.Weather.Model.Weather;
 import com.google.android.gms.maps.model.LatLng;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements OnClickListener{
 
 	private FishingManager fm = null;
 	Weather weather = new Weather();
-
+	Button Catch, Swim, Maps;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		GenerateData();
+		Catch = (Button) findViewById(R.id.btnCatch);		
+		Swim = (Button) findViewById(R.id.btnShowSwims);
+		Maps = (Button) findViewById(R.id.btnMaps);
+		Catch.setOnClickListener(this);
+		Swim.setOnClickListener(this);
+		Maps.setOnClickListener(this);
 	}
 
 	// Initiating Menu XML file (menu.xml)
@@ -56,9 +65,9 @@ public class MainActivity extends Activity {
 			startActivity(fwl_activity);
 			return true;
 		case R.id.itGen:
-			// GenerateData();
-			JSONWeatherTask task = new JSONWeatherTask();
-			task.execute(new GPSManager(this).getLocation());			
+			GenerateData();
+			/*JSONWeatherTask task = new JSONWeatherTask();
+			task.execute(new GPSManager(this).getLocation());	*/		
 			return true;
 		case R.id.itMaps:
 			Intent fishingmaps_activity = new Intent(this, FishingMaps.class);
@@ -123,7 +132,32 @@ public class MainActivity extends Activity {
 					+ weather.temperature.getTemp());		
 			Catch c = new Catch(fm.getAll_known_fish().get(0),fm.getFishingwater().get(0).getSwim().get(0),"Test",null,fm.getGear().getBait(),fm.getGear().getHook_bait().get(0), fm.getGear().getRigz().get(0),weather);
 			fm.CreateCatch(c);
+			TextView tv = (TextView) findViewById(R.id.tvWeather);
+			tv.setText("Current temp: "+ weather.temperature.getTemp() + "" );
 		}
+	}
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		switch(v.getId())
+		{
+		case R.id.btnCatch:
+			JSONWeatherTask task = new JSONWeatherTask();
+			task.execute(new GPSManager(this).getLocation());
+			break;
+		case R.id.btnShowSwims:
+			Intent fwl_activity = new Intent(this,
+					FishingWaterListActivity.class);
+			startActivity(fwl_activity);
+			break;
+		case R.id.btnMaps:
+			Intent fishingmaps_activity = new Intent(this, FishingMaps.class);
+			startActivity(fishingmaps_activity);
+			break;
+			
+		}
+		
 	}
 
 }
