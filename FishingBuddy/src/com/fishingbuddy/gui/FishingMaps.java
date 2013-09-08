@@ -5,7 +5,9 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.drawable.BitmapDrawable;
+import android.location.Location;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +26,8 @@ import com.fishingbuddy.logic.Swim;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
+import com.google.android.gms.maps.GoogleMap.OnMyLocationChangeListener;
+import com.google.android.gms.maps.LocationSource.OnLocationChangedListener;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
@@ -32,26 +36,34 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 
-public class FishingMaps extends Activity implements OnMapClickListener{	  
+public class FishingMaps extends Activity implements OnMapClickListener, OnMyLocationChangeListener{	  
 	  private GoogleMap map;
 	  private UiSettings map_settings;
 	private FishingManager fm;
 	private View popup_layout;
 	private PopupWindow popup;
+	protected PowerManager.WakeLock mWakeLock;
 
 	  @Override
 	  protected void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.activity_fishing_maps);
+	    
+	    /* This code together with the one in onDestroy() 
+         * will make the screen be always on until this Activity gets destroyed. */
+        final PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+        this.mWakeLock = pm.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK, "FM lock");
+        this.mWakeLock.acquire();
+        
 	    fm = (FishingManager)getApplication();
 	    
 	    
 	    map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
-	        .getMap();  
+	        .getMap();	    
 	    map_settings = map.getUiSettings();
 	    map.setMyLocationEnabled(true);
-	    map.setOnMapClickListener(this);	    
-	   
+	    map.setOnMapClickListener(this);
+	    map.setOnMyLocationChangeListener(this);	    
 
 	    RefreshFwSw();
 
@@ -61,8 +73,10 @@ public class FishingMaps extends Activity implements OnMapClickListener{
 	    // Zoom in, animating the camera.
 	    map.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);    
 	    
-
 	  }
+	  
+	  
+	  
 	  private void RefreshFwSw(){
 		    
 		    for(FishingWater fw : fm.getFishingwater()){
@@ -216,5 +230,18 @@ public class FishingMaps extends Activity implements OnMapClickListener{
 					}
 				});
             popup.showAtLocation(findViewById(R.id.map), Gravity.CENTER, 0, 0);
+	}
+	   @Override
+	    public void onDestroy() {
+	        this.mWakeLock.release();
+	        super.onDestroy();
+	    }
+
+
+
+	@Override
+	public void onMyLocationChange(Location location) {
+		map.animateCamera(CameraUpdateFactory.newLatLng(new LatLng(location.getLatitude(), location.getLongitude())));
+		
 	}
 }
