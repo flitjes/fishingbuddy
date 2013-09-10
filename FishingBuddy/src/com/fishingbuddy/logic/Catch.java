@@ -12,7 +12,7 @@ import com.fishingbuddy.logic.Weather.Model.Weather;
 public class Catch {
 	private Fish fish;	
 	private Swim swim;
-	private String description;
+	private String description,name;
 	private Bitmap image;
 	private List<Bait> bait;
 	private HookBait hookbait;
@@ -29,7 +29,10 @@ public class Catch {
 		this.bait = bait;
 		this.hookbait = hookbait;
 		this.rig = rig;
-		this.weather = weather;
+		this.setWeather(weather);
+	}
+	public Catch(){
+		
 	}
 
 	public Fish getFish() {
@@ -86,5 +89,17 @@ public class Catch {
 
 	public void setRig(Rig rig) {
 		this.rig = rig;
+	}
+	public Weather getWeather() {
+		return weather;
+	}
+	public void setWeather(Weather weather) {
+		this.weather = weather;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 }

@@ -83,7 +83,11 @@ public class FishingManager extends Application{
 	{
 		/*Todo: Get a list with all fish from somehwere*/
 		boolean done = false;
-		Fish f = new Fish();
+		Fish f = new Fish("Carp");		
+		all_known_fish.add(f);
+		f = new Fish("Mirror Carp");
+		all_known_fish.add(f);
+		f = new Fish("Grass Carp");
 		all_known_fish.add(f);
 		return done;
 	}

@@ -11,11 +11,23 @@ public class Gear {
 	private List <Rig> rigz = new ArrayList<Rig>();
 	
 	public Gear(){
-		bait.add(new Bait(BAITTYPE.Boilie, "BoilieMan", 20));
-		hook_bait.add(new HookBait(BAITTYPE.Boilie, "BoilieMan", 15));
-		rigz.add(new Rig("D-rig", "Wide Gape", 6));
+		GenerateGear();
 	}
-
+	private void GenerateGear(){
+		bait.add(new Bait(BAITTYPE.Boilie, "BoilieMan", 20));
+		bait.add(new Bait(BAITTYPE.Boilie, "ScopexCream", 20));
+		bait.add(new Bait(BAITTYPE.Boilie, "PineAppleCream", 20));
+		bait.add(new Bait(BAITTYPE.Boilie, "BoilieMan", 15));
+		bait.add(new Bait(BAITTYPE.Boilie, "ScopexCream", 15));
+		bait.add(new Bait(BAITTYPE.Boilie, "PineAppleCream", 15));
+		hook_bait.add(new HookBait(BAITTYPE.Boilie, "BoilieMan", 15));
+		hook_bait.add(new HookBait(BAITTYPE.Boilie, "Scopex", 15));
+		hook_bait.add(new HookBait(BAITTYPE.Boilie, "PineAppleCream", 15));
+		hook_bait.add(new HookBait(BAITTYPE.POPUP, "Liver", 15));
+		rigz.add(new Rig("D-rig", "Wide Gape", 6));
+		rigz.add(new Rig("Chod-Rig", "Wide Gape", 6));
+		rigz.add(new Rig("Stiff-Rig", "Wide Gape", 6));
+	}
 	public List<Bait> getBait() {
 		return bait;
 	}

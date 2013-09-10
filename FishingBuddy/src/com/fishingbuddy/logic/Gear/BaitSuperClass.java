@@ -1,7 +1,7 @@
 package com.fishingbuddy.logic.Gear;
 
 public class BaitSuperClass {
-	enum BAITTYPE{Particle,Boilie,Pellet};
+	enum BAITTYPE{Particle,Boilie,Pellet,POPUP, PLASTIC};
 	BAITTYPE bait_type;	
 	String name;
 	int size;

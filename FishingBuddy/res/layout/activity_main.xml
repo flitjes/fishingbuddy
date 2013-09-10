@@ -24,6 +24,14 @@
                       android:layout_below="@+id/adView"
                       android:layout_marginTop="19dp"
                       android:text="Create Catch" />
+                     <Button
+                      android:id="@+id/btnShowCatches"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_alignParentLeft="true"
+                      android:layout_alignParentRight="true"
+                      android:layout_below="@+id/btnCatch"
+                      android:text="Show Catches" />
 
                   <Button
                       android:id="@+id/btnMaps"
@@ -31,7 +39,7 @@
                       android:layout_height="wrap_content"
                       android:layout_alignParentLeft="true"
                       android:layout_alignParentRight="true"
-                      android:layout_below="@+id/btnCatch"
+                      android:layout_below="@+id/btnShowCatches"
                       android:text="Show Maps" />
 
                   <Button
@@ -51,5 +59,7 @@
                       android:layout_below="@+id/btnShowSwims"
                       android:layout_marginTop="23dp"
                       android:text="" />
+
+               
 
 </RelativeLayout>
