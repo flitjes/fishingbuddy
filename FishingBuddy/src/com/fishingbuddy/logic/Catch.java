@@ -21,8 +21,8 @@ public class Catch {
 	private double weight;
 	private double length;
 	
-	public Catch(Fish fish, Swim swim, String description, Bitmap image,
-			List<Bait> bait, HookBait hookbait, Rig rig, Weather weather) {
+	public Catch(String name, Fish fish, Swim swim, String description, Bitmap image,
+			List<Bait> bait, HookBait hookbait, Rig rig, Weather weather, double weigth, double length) {
 		super();
 		this.fish = fish;
 		this.swim = swim;
@@ -32,6 +32,9 @@ public class Catch {
 		this.hookbait = hookbait;
 		this.rig = rig;
 		this.setWeather(weather);
+		this.weight = weigth;
+		this.length = length;
+		this.name = name;
 	}
 	public Catch(){
 		

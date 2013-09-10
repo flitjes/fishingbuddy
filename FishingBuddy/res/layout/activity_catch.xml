@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ImageView
+        android:id="@+id/ivCatch"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp"
+        android:src="@drawable/ic_launcher" />
+
+    <TextView
+        android:id="@+id/tvNameACLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ivCatch"
+        android:layout_toLeftOf="@+id/ivCatch"
+        android:text="Name:" />
+
+    <TextView
+        android:id="@+id/tvNameAC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvNameACLabel"
+        android:layout_below="@+id/tvNameACLabel"
+        android:layout_marginTop="16dp"
+        android:text="tvNameAC" />
+
+    <TextView
+        android:id="@+id/tvWeigthACLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvNameAC"
+        android:layout_below="@+id/tvNameAC"
+        android:layout_marginTop="16dp"
+        android:layout_centerVertical="true"
+        android:text="Weigth:" />
+
+    <TextView
+        android:id="@+id/tvWeigthAC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvWeigthACLabel"
+        android:layout_below="@+id/tvWeigthACLabel"
+        android:layout_marginTop="16dp"
+        android:text="tvWeigthC" />
+
+    <TextView
+        android:id="@+id/tvSwimACLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvWeigthAC"
+        android:layout_below="@+id/tvWeigthAC"
+        android:layout_marginTop="16dp"
+        android:text="Swim Water:" />
+
+    <TextView
+        android:id="@+id/tvSwimAC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvSwimACLabel"
+        android:layout_below="@+id/tvSwimACLabel"
+        android:layout_marginTop="16dp"
+        android:text="tvSwimAC" />
+    
+    <TextView
+        android:id="@+id/tvDescriptionACLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvSwimAC"
+        android:layout_below="@+id/tvSwimAC"
+        android:layout_marginTop="16dp"
+        android:text="Description: " />
+
+    <TextView
+        android:id="@+id/tvDescriptionAC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvDescriptionACLabel"
+        android:layout_below="@+id/tvDescriptionACLabel"
+        android:layout_marginTop="16dp"
+        android:text="tvDescriptionAC" />
+
+    
+       
+</RelativeLayout>

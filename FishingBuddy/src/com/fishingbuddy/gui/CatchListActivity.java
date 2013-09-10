@@ -1,34 +1,24 @@
 package com.fishingbuddy.gui;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.ContextMenu;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.PopupWindow;
-import android.widget.RelativeLayout;
 
 import com.fishingbuddy.R;
+import com.fishingbuddy.logic.Catch;
 import com.fishingbuddy.logic.FishingManager;
-import com.fishingbuddy.logic.GPSManager;
 
-public class CatchListActivity extends Activity{
-	static public String KEY_ID = "KEY_ID";
-	final int CONTEXT_MENU_DELETE_ITEM =1;
-	final int CONTEXT_MENU_UPDATE_ITEM =2;	 
+public class CatchListActivity extends Activity{	
+	 final int CONTEXT_MENU_DELETE_ITEM =1;
+	 final int CONTEXT_MENU_UPDATE_ITEM =2;
+	 final int CONTEXT_MENU_SHOW_CATCH = 3;	 
 	 private ListView listView = null;
 	 private FishingManager fm = null;	 
 	 
@@ -40,7 +30,8 @@ public class CatchListActivity extends Activity{
 	 public void onCreateContextMenu(ContextMenu menu, View v,ContextMenu.ContextMenuInfo menuInfo) {
 	           
 	  menu.add(Menu.NONE, CONTEXT_MENU_DELETE_ITEM, Menu.NONE, "Delete Catch");
-	  menu.add(Menu.NONE, CONTEXT_MENU_UPDATE_ITEM, Menu.NONE, "Update Catch");	  
+	  menu.add(Menu.NONE, CONTEXT_MENU_UPDATE_ITEM, Menu.NONE, "Update Catch");
+	  menu.add(Menu.NONE, CONTEXT_MENU_SHOW_CATCH, Menu.NONE, "Show Catch");
 	 }
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +59,18 @@ public class CatchListActivity extends Activity{
 	             case CONTEXT_MENU_UPDATE_ITEM:	     
 	            	 
 	                   return(true); 
+	             case CONTEXT_MENU_SHOW_CATCH:	 
+	            	 Bundle b = new Bundle();
+	            	 Catch c = fm.getCatches().get(info.position);
+	            	 b.putString(CatchActivity.KEY_NAME, c.getName());
+	            	 b.putString(CatchActivity.KEY_SWIM, c.getSwim().getName());
+	            	 b.putString(CatchActivity.KEY_DESCRIPTION, c.getDescription());
+	            	 b.putString(CatchActivity.KEY_WEIGTH, Double.toString(c.getWeight()));
+	            	 Intent catch_activity = new Intent(this,
+	 						CatchActivity.class);
+	            	 catch_activity.putExtras(b);
+	 					startActivity(catch_activity);
+	                   return(true);      
 	             
 	             
 	      }

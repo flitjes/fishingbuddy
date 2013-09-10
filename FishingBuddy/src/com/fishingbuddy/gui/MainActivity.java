@@ -134,7 +134,9 @@ public class MainActivity extends Activity implements OnClickListener {
 			fm.CreateSwimForFishingWater((fm.getFishingwater().size() - 1),
 					"Biescheloop", new LatLng(51.6478, 5.3200),
 					"Fuckedup fishing");
-			created = true;
+			created = true;	
+			
+
 		}
 	}
 
@@ -186,11 +188,12 @@ public class MainActivity extends Activity implements OnClickListener {
 			task.execute(new GPSManager(this).getLocation());
 			CreateCatchTree();
 			break;
-		case R.id.btnShowCatches:
-				/*ArrayList<Catch> catches = (ArrayList<Catch>) fm.getCatches();
-				for(Catch c : catches){
-					Log.d("Catch","Cought: " + c.getFish() + " Description: " + c.getDescription()); 
-				}*/
+		case R.id.btnShowCatches:			
+			Catch c = new Catch("The Beast!",fm.getAll_known_fish().get(0),fm.getFishingwater
+					 ().get(0).getSwim
+					 ().get(0),"The biggest of them all!",null,fm.getGear().getBait(),fm.getGear
+					 ().getHook_bait().get(0), fm.getGear().getRigz().get(0),new Weather(),25.63,3.4);
+					 fm.CreateCatch(c);
 				Intent catch_activity = new Intent(this,
 						CatchListActivity.class);
 				startActivity(catch_activity);
