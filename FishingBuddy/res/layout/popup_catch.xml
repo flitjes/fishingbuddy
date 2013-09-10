@@ -7,17 +7,7 @@
     android:id="@+id/popup_ctch"     
     android:background="#000000" 
     >
-
-    <Button
-        android:id="@+id/btn_popup_catch_ok"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"        
-        android:layout_alignTop="@+id/edCatchDescription"
-        android:layout_marginRight="35dp"
-        android:layout_marginTop="72dp"
-        android:layout_marginLeft="10dp"        
-        android:text="Ok" />
-
+    
     <TextView
         android:id="@+id/tvcName"
         android:layout_width="wrap_content"
@@ -56,11 +46,48 @@
            android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp" 
         android:ems="10"
-        android:inputType="textMultiLine" >
-
-        <requestFocus />
+        android:inputType="textMultiLine" >        
     </EditText>
+    
+    <TextView
+        android:id="@+id/tvcWeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"        
+        android:layout_alignParentLeft="true"
+        android:layout_margin="10dp"
+        android:layout_below="@+id/edCatchDescription"
+        android:text="Weigth" />
 
+    <EditText
+        android:id="@+id/edCatchWeigth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/tvcWeight" 
+           android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"        
+        android:ems="10" />
+    
+    <TextView
+        android:id="@+id/tvcLength"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"        
+        android:layout_alignParentLeft="true"
+        android:layout_margin="10dp"
+        android:layout_below="@+id/edCatchWeigth"
+        android:text="Length" />
+
+    <EditText
+        android:id="@+id/edCatchLength"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/tvcLength" 
+           android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"        
+        android:ems="10" />
+    
+    
     <Button
         android:id="@+id/btn_popup_catch_cancel"
         android:layout_width="wrap_content"
@@ -68,5 +95,14 @@
         android:layout_alignBottom="@+id/btn_popup_catch_ok"
         android:layout_toRightOf="@+id/tvcDescription"
         android:text="Cancel" />
+
+    <Button
+        android:id="@+id/btn_popup_catch_ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/edCatchLength"
+        android:layout_below="@+id/edCatchLength"
+        android:layout_marginTop="16dp"
+        android:text="Ok" />
 
 </RelativeLayout>

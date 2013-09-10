@@ -18,6 +18,8 @@ public class Catch {
 	private HookBait hookbait;
 	private Rig rig;
 	private Weather weather;
+	private double weight;
+	private double length;
 	
 	public Catch(Fish fish, Swim swim, String description, Bitmap image,
 			List<Bait> bait, HookBait hookbait, Rig rig, Weather weather) {
@@ -102,4 +104,18 @@ public class Catch {
 	public void setName(String name) {
 		this.name = name;
 	}
+	public double getWeight() {
+		return weight;
+	}
+	public void setWeight(double weight) {
+		this.weight = weight;
+	}
+	public double getLength() {
+		return length;
+	}
+	public void setLength(double length) {
+		this.length = length;
+	}
+	
+	
 }

@@ -41,6 +41,10 @@
             android:name="com.fishingbuddy.gui.FishingWaterListActivity"
             android:label="@string/fwl_name_activity"
             android:theme="@android:style/Theme.Holo" />
+           <activity
+            android:name="com.fishingbuddy.gui.CatchListActivity"
+            android:label="@string/fwl_name_activity"
+            android:theme="@android:style/Theme.Holo" />
         <activity
             android:name="com.fishingbuddy.gui.SwimsListActivity"
             android:label="@string/sl_name_activity"

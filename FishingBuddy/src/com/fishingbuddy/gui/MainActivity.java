@@ -3,6 +3,7 @@ package com.fishingbuddy.gui;
 import java.util.ArrayList;
 
 import org.json.JSONException;
+import org.xml.sax.Parser;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -186,10 +187,13 @@ public class MainActivity extends Activity implements OnClickListener {
 			CreateCatchTree();
 			break;
 		case R.id.btnShowCatches:
-				ArrayList<Catch> catches = (ArrayList<Catch>) fm.getCatches();
+				/*ArrayList<Catch> catches = (ArrayList<Catch>) fm.getCatches();
 				for(Catch c : catches){
 					Log.d("Catch","Cought: " + c.getFish() + " Description: " + c.getDescription()); 
-				}
+				}*/
+				Intent catch_activity = new Intent(this,
+						CatchListActivity.class);
+				startActivity(catch_activity);
 			break;
 		case R.id.btnShowSwims:
 			Intent fwl_activity = new Intent(this,
@@ -355,11 +359,19 @@ public class MainActivity extends Activity implements OnClickListener {
 					
 					@Override
 					public void onClick(View v) {
-						String catch_name, catch_description;
+						String catch_name, catch_description,catch_weigth, catch_length;
 						catch_name = ((EditText)popup_layout.findViewById(R.id.edCatchName)).getText().toString();
 			            catch_description = ((EditText)popup_layout.findViewById(R.id.edCatchDescription)).getText().toString();
+			            catch_weigth = ((EditText)popup_layout.findViewById(R.id.edCatchWeigth)).getText().toString();
+			            catch_length = ((EditText)popup_layout.findViewById(R.id.edCatchLength)).getText().toString();
 			            catch_current.setName(catch_name);
 			            catch_current.setDescription(catch_description);
+			            catch_current.setWeight(Double.parseDouble(catch_weigth));
+			            if(catch_length.contentEquals(""))
+			            	catch_current.setLength(0);
+			            else
+			            	catch_current.setLength(Double.parseDouble(catch_length));
+			            
 			            fm.CreateCatch(catch_current);
 			            popup.dismiss();				            
 						
