@@ -111,7 +111,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		}
 	}
 
-	Boolean created = false;
+	private boolean created = false;
 
 	private void GenerateData() {
 		if (!created) {
