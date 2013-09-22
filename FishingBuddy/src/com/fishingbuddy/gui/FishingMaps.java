@@ -241,7 +241,7 @@ public class FishingMaps extends Activity implements OnMapClickListener, OnMyLoc
 
 	@Override
 	public void onMyLocationChange(Location location) {
-		map.animateCamera(CameraUpdateFactory.newLatLng(new LatLng(location.getLatitude(), location.getLongitude())));
+		//map.animateCamera(CameraUpdateFactory.newLatLng(new LatLng(location.getLatitude(), location.getLongitude())));
 		
 	}
 }

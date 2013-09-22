@@ -62,7 +62,8 @@ public class MainActivity extends Activity implements OnClickListener {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		GenerateData();
+		fm = (FishingManager) getApplication();
+		fm.CreateDBConnection(getApplicationContext());		
 		CreateCatch = (Button) findViewById(R.id.btnCatch);
 		ShowCatch = (Button) findViewById(R.id.btnShowCatches);
 		GotoSwim = (Button) findViewById(R.id.btnShowSwims);
@@ -97,7 +98,7 @@ public class MainActivity extends Activity implements OnClickListener {
 			startActivity(fwl_activity);
 			return true;
 		case R.id.itGen:
-			GenerateData();
+			//GenerateData();
 			/*
 			 * JSONWeatherTask task = new JSONWeatherTask(); task.execute(new
 			 * GPSManager(this).getLocation());
@@ -113,9 +114,8 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	private boolean created = false;
 
-	private void GenerateData() {
-		if (!created) {
-			fm = (FishingManager) getApplication();
+	/*private void GenerateData() {
+		if (!created) {			
 			GPSManager gpsm = new GPSManager(this);
 			int x = 0, y = 1;
 
@@ -138,7 +138,7 @@ public class MainActivity extends Activity implements OnClickListener {
 			
 
 		}
-	}
+	}*/
 
 	private class JSONWeatherTask extends AsyncTask<LatLng, Void, Weather> {
 
@@ -189,11 +189,6 @@ public class MainActivity extends Activity implements OnClickListener {
 			CreateCatchTree();
 			break;
 		case R.id.btnShowCatches:			
-			Catch c = new Catch("The Beast!",fm.getAll_known_fish().get(0),fm.getFishingwater
-					 ().get(0).getSwim
-					 ().get(0),"The biggest of them all!",null,fm.getGear().getBait(),fm.getGear
-					 ().getHook_bait().get(0), fm.getGear().getRigz().get(0),new Weather(),25.63,3.4);
-					 fm.CreateCatch(c);
 				Intent catch_activity = new Intent(this,
 						CatchListActivity.class);
 				startActivity(catch_activity);

@@ -8,6 +8,7 @@ import android.location.Location;
 import com.google.android.gms.maps.model.LatLng;
 
 public class FishingWater {
+	private int db_fishingwater_id;/*DB id*/
 	private String name = null;
 	private LatLng location = null;
 	private List<Swim> swim = null;
@@ -35,6 +36,16 @@ public class FishingWater {
 		this.setName(name);
 		this.setLocation(location);
 		this.setDescription(description);
+		swim = new ArrayList<Swim>();
+		fish = new ArrayList<Fish>();
+	}
+	/*Database uses this constructor*/
+	public FishingWater(int id, String name, LatLng location,String description) {
+		// TODO Auto-generated constructor stub
+		this.setName(name);
+		this.setLocation(location);
+		this.setDescription(description);
+		this.setId(id);
 		swim = new ArrayList<Swim>();
 		fish = new ArrayList<Fish>();
 	}
@@ -87,4 +98,12 @@ public class FishingWater {
 		this.description = description;
 	}
 
+	public int getId() {
+		return db_fishingwater_id;
+	}
+
+	public void setId(int id) {
+		this.db_fishingwater_id = id;
+	}
+	
 }

@@ -5,6 +5,8 @@ import android.graphics.Bitmap;
 import com.google.android.gms.maps.model.LatLng;
 
 public class Swim {
+	private int db_swim_id;
+	private int db_fishingwater_id;
 	private String name = null;
 	private LatLng location = null;
 	private String description = null;
@@ -15,6 +17,16 @@ public class Swim {
 		this.name = name;
 		this.location = location;
 		this.description = description;		
+	}
+	
+	/*Database uses this constructor*/
+	public Swim(int swim_id, int fw_id, String name, LatLng location, String description) {
+		// TODO Auto-generated constructor stub
+		this.name = name;
+		this.location = location;
+		this.description = description;		
+		setSwim_id(swim_id);
+		setFishingwater_id(fw_id);
 	}
 	public void UpdateSwim(String name,LatLng location, String description){
 		if(name != null)
@@ -56,5 +68,23 @@ public class Swim {
 	public void setPicture(Bitmap picture) {
 		this.picture = picture;
 	}
+	
+
+	public int getSwim_id() {
+		return db_swim_id;
+	}
+
+	public void setSwim_id(int swim_id) {
+		this.db_swim_id = swim_id;
+	}
+
+	public int getFishingwater_id() {
+		return db_fishingwater_id;
+	}
+
+	public void setFishingwater_id(int fishingwater_id) {
+		this.db_fishingwater_id = fishingwater_id;
+	}
+	
 
 }

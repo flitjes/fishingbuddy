@@ -5,8 +5,11 @@ import java.util.Date;
 import java.util.List;
 
 import android.app.Application;
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 
 import com.fishingbuddy.logic.Gear.Gear;
+import com.fishingbuddy.logic.storage.FishingBuddyOpenHelper;
 import com.google.android.gms.maps.model.LatLng;
 
 public class FishingManager extends Application{	
@@ -16,12 +19,17 @@ public class FishingManager extends Application{
 	private GPSManager gpsm = new GPSManager(this);	
 	private List<Catch> catches = new ArrayList<Catch>();
 	private Gear gear = new Gear();
+	private FishingBuddyOpenHelper fbdbhelper;
+	private SQLiteDatabase db;
 	
-	public FishingManager() {
+	public FishingManager() {		
 		/*Get all known fish*/
 		fillListWithFish();		
 	}
-	
+	public void CreateDBConnection(Context c){
+		fbdbhelper = new FishingBuddyOpenHelper(getApplicationContext());		
+		fishingwater = fbdbhelper.getFishingWaters();	
+	}
 	public boolean CreateFisherman(String name, Date birthday){
 		fisherman = new Fisherman(name, birthday);
 		if(fisherman == null)
@@ -39,10 +47,14 @@ public class FishingManager extends Application{
 		return gpsm.getLocation();
 	}
 	public boolean CreateFishingWater(String name, LatLng loc,String description){
-		return fishingwater.add(new FishingWater(name,loc,description));
+		FishingWater fw = new FishingWater(name,loc,description);
+		fbdbhelper.addFishingWater(fw);
+		return fishingwater.add(fw);
 	}
-	public boolean CreateFishingWater(String name, String description){
-		return fishingwater.add(new FishingWater(name,gpsm.getLocation(),description));
+	public boolean CreateFishingWaterCurrentLocation(String name, String description){
+		FishingWater fw = new FishingWater(name,gpsm.getLocation(),description);
+		fbdbhelper.addFishingWater(fw);
+		return fishingwater.add(fw);
 	}
 	
 	public boolean DeleteFishingWater(int fishingwater_index){
