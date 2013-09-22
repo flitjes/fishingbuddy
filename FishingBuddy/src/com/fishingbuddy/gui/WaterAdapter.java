@@ -1,5 +1,6 @@
 package com.fishingbuddy.gui;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import android.content.Context;
@@ -12,7 +13,6 @@ import android.widget.TextView;
 
 import com.fishingbuddy.R;
 import com.fishingbuddy.logic.FishingWater;
-import com.google.android.gms.maps.model.LatLng;
 
 public class WaterAdapter extends ArrayAdapter<FishingWater>{
 
@@ -38,14 +38,19 @@ public class WaterAdapter extends ArrayAdapter<FishingWater>{
         ImageView imageView = (ImageView) rowView.findViewById(R.id.imageSwimPicturew);
         TextView textView = (TextView) rowView.findViewById(R.id.tvNamew);
         TextView textLoc = (TextView) rowView.findViewById(R.id.tvLocw);        
-        
-        textView.setText(fishingwater.get(position).getName());
-        textLoc.setText(fishingwater.get(position).getLocation().latitude + " " + fishingwater.get(position).getLocation().longitude);  
+        FishingWater fw = fishingwater.get(position);
+        textView.setText(fw.getName());
+        textLoc.setText(roundToSixDecimals(fw.getLocation().latitude) + " " + roundToSixDecimals(fw.getLocation().longitude));  
       
       
         return rowView;
 
     }
+	
+	private double roundToSixDecimals(double d){
+		DecimalFormat twoDForm = new DecimalFormat("#.######");
+		return Double.valueOf(twoDForm.format(d));
+	}
 
 }
 
