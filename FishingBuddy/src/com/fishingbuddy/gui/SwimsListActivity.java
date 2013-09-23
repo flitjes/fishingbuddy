@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -25,7 +26,7 @@ import com.fishingbuddy.R;
 import com.fishingbuddy.logic.FishingManager;
 import com.fishingbuddy.logic.GPSManager;
 
-public class SwimsListActivity extends Activity{
+public class SwimsListActivity extends Activity implements OnItemClickListener{
 	static public String KEY_ID = "KEY_ID";
 	final int CONTEXT_MENU_DELETE_ITEM =1;
 	final int CONTEXT_MENU_UPDATE_ITEM =2;	 
@@ -49,6 +50,7 @@ public class SwimsListActivity extends Activity{
 		super.onCreate(savedInstanceState);		
        setContentView(R.layout.activity_swimlist);
        listView = (ListView) findViewById(R.id.lvSwims);
+       listView.setOnItemClickListener(this);
        Intent in = getIntent();
        fishingwater_id = in.getExtras().getInt(KEY_ID);
        
@@ -70,7 +72,7 @@ public class SwimsListActivity extends Activity{
 	            	  	RefreshSwims();
 	                   return(true);
 	             case CONTEXT_MENU_UPDATE_ITEM:	     
-	            	 	ShowPopup(info.position);
+	            	 	ShowPopup(info.position,true);
 	                   return(true); 
 	             
 	             
@@ -115,7 +117,7 @@ public class SwimsListActivity extends Activity{
 	       listView.setAdapter(adapter);        
 	         
 	}
-	private void ShowPopup(final int swim_index){
+	private void ShowPopup(final int swim_index, boolean edit){
 		  RelativeLayout viewGroup = (RelativeLayout)findViewById(R.id.popup_sl);
    	   LayoutInflater layoutInflater = (LayoutInflater) getSystemService(getApplication().LAYOUT_INFLATER_SERVICE);   	   
    	   popup_layout = layoutInflater.inflate(R.layout.popup_swims, viewGroup);
@@ -156,6 +158,19 @@ public class SwimsListActivity extends Activity{
 					
 				}
 			});
+              if(!edit){
+           	   btn_cancel.setEnabled(false);
+           	   btn_cancel.setVisibility(View.GONE);;
+           	   btn_ok.setEnabled(false);
+           	   btn_ok.setVisibility(View.GONE);
+           	   ((EditText)popup_layout.findViewById(R.id.edSwimName)).setEnabled(false);
+           	   ((EditText)popup_layout.findViewById(R.id.edSwimDescription)).setEnabled(false);
+              }
               popup.showAtLocation(findViewById(R.id.lvSwims), Gravity.CENTER, 0, 0);
+	}
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
+		// TODO Auto-generated method stub
+		ShowPopup(position,false);
 	}
 }

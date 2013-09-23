@@ -13,8 +13,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -26,11 +28,11 @@ import com.fishingbuddy.R;
 import com.fishingbuddy.logic.FishingManager;
 import com.fishingbuddy.logic.GPSManager;
 
-public class FishingWaterListActivity extends Activity {	
+public class FishingWaterListActivity extends Activity implements OnItemClickListener {	
 
 	 final int CONTEXT_MENU_DELETE_ITEM =1;
 	 final int CONTEXT_MENU_UPDATE_ITEM =2;
-	 final int CONTEXT_MENU_SHOW_SWIMS = 3;
+	 final int CONTEXT_MENU_SHOW_SWIM_DETEAILS = 3;
 	 private ListView listView = null;
 	 private FishingManager fm = null; 
 	 
@@ -43,7 +45,7 @@ public class FishingWaterListActivity extends Activity {
 	           
 	  menu.add(Menu.NONE, CONTEXT_MENU_DELETE_ITEM, Menu.NONE, "Delete Fishing water");
 	  menu.add(Menu.NONE, CONTEXT_MENU_UPDATE_ITEM, Menu.NONE, "Update Fishing water");
-	  menu.add(Menu.NONE, CONTEXT_MENU_SHOW_SWIMS, Menu.NONE, "Show Swims");
+	  menu.add(Menu.NONE, CONTEXT_MENU_SHOW_SWIM_DETEAILS, Menu.NONE, "Detailed Swim");
 	 }
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +53,7 @@ public class FishingWaterListActivity extends Activity {
 		super.onCreate(savedInstanceState);		
        setContentView(R.layout.activity_waterlist);
        listView = (ListView) findViewById(R.id.lvWaters); 
-       
+       listView.setOnItemClickListener(this);
        fm = (FishingManager)getApplication();
        
         RefreshFishingWaters();
@@ -74,10 +76,10 @@ public class FishingWaterListActivity extends Activity {
 	            	  	RefreshFishingWaters();
 	                   return(true);
 	             case CONTEXT_MENU_UPDATE_ITEM:	     
-	            	 	ShowPopup(info.position);
+	            	 	ShowPopup(info.position,true);
 	                   return(true);  
-	             case CONTEXT_MENU_SHOW_SWIMS:
-	            	 ShowSwims(info.position);
+	             case CONTEXT_MENU_SHOW_SWIM_DETEAILS:
+	            	 ShowPopup(info.position,false);
 	            	 return (true);
 	             
 	      }
@@ -126,7 +128,7 @@ public class FishingWaterListActivity extends Activity {
 	       listView.setAdapter(adapter); 
 	}
 	
-	private void ShowPopup(final int fishingwater_index){
+	private void ShowPopup(final int fishingwater_index, boolean edit){
  	   RelativeLayout viewGroup = (RelativeLayout)findViewById(R.id.popup_fwl);
 	   LayoutInflater layoutInflater = (LayoutInflater) getSystemService(getApplication().LAYOUT_INFLATER_SERVICE);
 	   	   
@@ -171,6 +173,15 @@ public class FishingWaterListActivity extends Activity {
 				
 			}
 		});
+           if(!edit){
+        	   btn_cancel.setEnabled(false);
+        	   btn_cancel.setVisibility(View.GONE);;
+        	   btn_ok.setEnabled(false);
+        	   btn_ok.setVisibility(View.GONE);
+        	   ((EditText)popup_layout.findViewById(R.id.edWaterName)).setEnabled(false);
+        	   ((EditText)popup_layout.findViewById(R.id.edWaterDescription)).setEnabled(false);
+           }
+        	   
            popup.showAtLocation(findViewById(R.id.lvWaters), Gravity.CENTER, 0, 0);
 	}
 	/*@Override
@@ -182,7 +193,12 @@ public class FishingWaterListActivity extends Activity {
 		sl_activity.putExtras(b);
 		startActivity(sl_activity);
 		
-	}*/		
+	}*/
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
+		// TODO Auto-generated method stub
+		ShowSwims(position);
+	}		
 	
 
 }
