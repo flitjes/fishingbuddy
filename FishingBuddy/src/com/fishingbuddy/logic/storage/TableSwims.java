@@ -89,5 +89,11 @@ public class TableSwims {
 	    db.delete(FishingBuddyOpenHelper.FISHINGWATER_TABLE_NAME, SW_ID_KEY + " = ?",
 	            new String[] { String.valueOf(sw.getdbSwim_id()) });	    
 	}
+	@Override
+	protected void finalize() throws Throwable {
+		// TODO Auto-generated method stub
+		super.finalize();
+		db.close();
+	}
 	
 }

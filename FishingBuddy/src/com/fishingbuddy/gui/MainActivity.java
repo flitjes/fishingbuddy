@@ -366,11 +366,17 @@ public class MainActivity extends Activity implements OnClickListener {
 			            catch_length = ((EditText)popup_layout.findViewById(R.id.edCatchLength)).getText().toString();
 			            catch_current.setName(catch_name);
 			            catch_current.setDescription(catch_description);
-			            catch_current.setWeight(Double.parseDouble(catch_weigth));
-			            if(catch_length.contentEquals(""))
-			            	catch_current.setLength(0);
-			            else
-			            	catch_current.setLength(Double.parseDouble(catch_length));
+			            double weight = 0,length = 0;
+			            
+			            if(!catch_weigth.contentEquals(""))
+			            	weight = Double.parseDouble(catch_weigth);
+			            
+			            catch_current.setWeight(weight);
+			            
+			            if(!catch_length.contentEquals(""))
+			            	length = Double.parseDouble(catch_length);           
+			            	
+			            catch_current.setLength(length);
 			            
 			            fm.CreateCatch(catch_current);
 			            popup.dismiss();				            

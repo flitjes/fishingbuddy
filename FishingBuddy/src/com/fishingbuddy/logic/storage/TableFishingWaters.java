@@ -102,4 +102,12 @@ public class TableFishingWaters {
 		return fws;
 	}
 
+	@Override
+	protected void finalize() throws Throwable {
+		// TODO Auto-generated method stub
+		super.finalize();
+		db.close();
+	}
+	
+
 	}
