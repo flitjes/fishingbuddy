@@ -19,16 +19,19 @@ public class FishingManager extends Application{
 	private GPSManager gpsm = new GPSManager(this);	
 	private List<Catch> catches = new ArrayList<Catch>();
 	private Gear gear = new Gear();
-	private FishingBuddyOpenHelper fbdbhelper;
-	private SQLiteDatabase db;
+	private FishingBuddyOpenHelper fbdbhelper;	
 	
+	@Override
+	public void onCreate() {
+		// TODO Auto-generated method stub
+		super.onCreate();
+		fbdbhelper = new FishingBuddyOpenHelper(getApplicationContext());			
+		Update();
+	}
 	public FishingManager() {		
 		/*Get all known fish*/
-		fillListWithFish();		
-	}
-	public void CreateDBConnection(Context c){
-		fbdbhelper = new FishingBuddyOpenHelper(getApplicationContext());		
-		fishingwater = fbdbhelper.getFishingWaters();	
+		fillListWithFish();
+		
 	}
 	public boolean CreateFisherman(String name, Date birthday){
 		fisherman = new Fisherman(name, birthday);
@@ -48,17 +51,21 @@ public class FishingManager extends Application{
 	}
 	public boolean CreateFishingWater(String name, LatLng loc,String description){
 		FishingWater fw = new FishingWater(name,loc,description);
-		fbdbhelper.addFishingWater(fw);
-		return fishingwater.add(fw);
+		fbdbhelper.getTbfw().addFishingWater(fw);
+		Update();
+		return true;
 	}
 	public boolean CreateFishingWaterCurrentLocation(String name, String description){
 		FishingWater fw = new FishingWater(name,gpsm.getLocation(),description);
-		fbdbhelper.addFishingWater(fw);
-		return fishingwater.add(fw);
+		fbdbhelper.getTbfw().addFishingWater(fw);
+		Update();
+		return true;
 	}
 	
 	public boolean DeleteFishingWater(int fishingwater_index){
-		fishingwater.remove(fishingwater_index);
+		//fishingwater.remove(fishingwater_index);
+		fbdbhelper.deleteFwWithSwims(fishingwater.get(fishingwater_index));
+		Update();
 		return true;
 	}
 	public void UpdateFishingWater(int fishingwater_index, String name, String description, LatLng location){
@@ -72,16 +79,22 @@ public class FishingManager extends Application{
 		if(getFishingwater().size() != fishinwater_index)
 			return 0;
 		int index = getFishingwater().get(fishinwater_index).CreateSwim(name, gpsm.getLocation(), description);		
+		fbdbhelper.getTbsw().addSwim(new Swim(getFishingwater().get(fishinwater_index).getId(), name, gpsm.getLocation(), description));
+		Update();
 		return index;
 	}
 	
 	public int CreateSwimForFishingWater(int fishinwater_index, String name, LatLng location, String description){
-		int index = getFishingwater().get(fishinwater_index).CreateSwim(name, location, description);		
+		int index = getFishingwater().get(fishinwater_index).CreateSwim(name, location, description);	
+		fbdbhelper.getTbsw().addSwim(new Swim(getFishingwater().get(fishinwater_index).getId(), name, location, description));
+		Update();
 		return index;
 	}
 	
 	public boolean DeleteSwimFromFishingWater(int fishingwater_index, int swim_index){
-		getFishingwater().get(fishingwater_index).getSwim().remove(swim_index);
+		//getFishingwater().get(fishingwater_index).getSwim().remove(swim_index);
+		fbdbhelper.getTbsw().deleteSwim(getFishingwater().get(fishingwater_index).getSwim().get(swim_index));
+		Update();
 		return true;
 	}
 	
@@ -127,6 +140,11 @@ public class FishingManager extends Application{
 	public void setGear(Gear gear) {
 		this.gear = gear;
 	}
-	
+	private void Update(){
+		fishingwater = fbdbhelper.getTbfw().getFishingWaters();	
+		for(FishingWater fw: fishingwater){
+			fw.setSwim(fbdbhelper.getTbsw().getSwimForFishingWater(fw.getId()));
+		}
+	}
 	
 }

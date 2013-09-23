@@ -2,6 +2,7 @@ package com.fishingbuddy.gui;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.DecimalFormat;
 import java.util.List;
 
 import android.content.Context;
@@ -43,12 +44,16 @@ public class SwimAdapter extends ArrayAdapter<Swim>{
         TextView textDes = (TextView) rowView.findViewById(R.id.tvDescription);
         
         textView.setText(swim.get(position).getName());
-        textLoc.setText(swim.get(position).getLocation().latitude + " " + swim.get(position).getLocation().longitude);  
+        textLoc.setText(roundToSixDecimals(swim.get(position).getLocation().latitude) + " " + roundToSixDecimals(swim.get(position).getLocation().longitude));  
         textDes.setText(swim.get(position).getDescription());
       
         return rowView;
 
     }
+	private double roundToSixDecimals(double d){
+		DecimalFormat twoDForm = new DecimalFormat("#.######");
+		return Double.valueOf(twoDForm.format(d));
+	}
 
 }
 

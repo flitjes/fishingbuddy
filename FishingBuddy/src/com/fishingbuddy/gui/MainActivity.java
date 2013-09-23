@@ -10,6 +10,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -42,6 +43,7 @@ import com.fishingbuddy.logic.Gear.Rig;
 import com.fishingbuddy.logic.Weather.JSONWeatherParser;
 import com.fishingbuddy.logic.Weather.WeatherHttpClient;
 import com.fishingbuddy.logic.Weather.Model.Weather;
+import com.fishingbuddy.logic.storage.FishingBuddyOpenHelper;
 import com.google.android.gms.maps.model.LatLng;
 
 public class MainActivity extends Activity implements OnClickListener {
@@ -61,9 +63,8 @@ public class MainActivity extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-		fm = (FishingManager) getApplication();
-		fm.CreateDBConnection(getApplicationContext());		
+		setContentView(R.layout.activity_main);		
+		fm = (FishingManager) getApplication();		
 		CreateCatch = (Button) findViewById(R.id.btnCatch);
 		ShowCatch = (Button) findViewById(R.id.btnShowCatches);
 		GotoSwim = (Button) findViewById(R.id.btnShowSwims);
@@ -176,6 +177,7 @@ public class MainActivity extends Activity implements OnClickListener {
 			catch_current.setWeather(weather);			
 		}
 	}
+	
 
 	private boolean BLOCKING = true;
 
