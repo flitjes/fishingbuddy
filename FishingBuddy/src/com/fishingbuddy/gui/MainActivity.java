@@ -338,7 +338,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	}
 	private void ShowCatchPopup(){
 		   RelativeLayout viewGroup = (RelativeLayout)findViewById(R.id.popup_ctch);
-	   	   LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+	   	   LayoutInflater layoutInflater = (LayoutInflater) getSystemService(getApplication().LAYOUT_INFLATER_SERVICE);
 	   	   final View popup_layout = layoutInflater.inflate(R.layout.popup_catch, viewGroup);
 	   	 
 	   	   // Creating the PopupWindow

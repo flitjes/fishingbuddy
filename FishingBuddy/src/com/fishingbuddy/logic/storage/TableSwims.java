@@ -49,6 +49,19 @@ public class TableSwims {
 		// Inserting Row
 		db.insert(FishingBuddyOpenHelper.SWIM_TABLE_NAME, null, values);		
 	}
+	
+	public int updateSwim(Swim sw) {    
+	 
+		ContentValues values = new ContentValues();
+		values.put(SW_NAME_KEY, sw.getName());
+		values.put(SW_NAME_DESCRIPTION_KEY, sw.getDescription());
+		values.put(SW_NAME_LOC_LAT_KEY, sw.getLocation().latitude);
+		values.put(SW_NAME_LOC_LONG_KEY, sw.getLocation().longitude);
+		values.put(FW_ID_KEY, sw.getdbFishingwater_id());
+	    // updating row
+	    return db.update(FishingBuddyOpenHelper.SWIM_TABLE_NAME, values, SW_ID_KEY + " = ?",
+	            new String[] { String.valueOf(sw.getdbSwim_id()) });
+	}
 
 	public ArrayList<Swim> getSwimForFishingWater(int id) {
 		ArrayList<Swim> sws = new ArrayList<Swim>();

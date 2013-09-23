@@ -70,9 +70,13 @@ public class FishingManager extends Application{
 	}
 	public void UpdateFishingWater(int fishingwater_index, String name, String description, LatLng location){
 		getFishingwater().get(fishingwater_index).UpdateFishingWater(name, description, location);
+		fbdbhelper.getTbfw().updateFishingWater(getFishingwater().get(fishingwater_index));
+		Update();
 	}
 	public void UpdateSwimForFishingWater(int fishinwater_index, int swim_index, String name, String description,LatLng location){
 		getFishingwater().get(fishinwater_index).UpdateSwim(swim_index, name, description, location);
+		fbdbhelper.getTbsw().updateSwim(getFishingwater().get(fishinwater_index).getSwim().get(swim_index));
+		Update();
 	}
 	
 	public int CreateSwimForFishingWater(int fishinwater_index, String name, String description){

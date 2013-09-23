@@ -117,7 +117,7 @@ public class SwimsListActivity extends Activity{
 	}
 	private void ShowPopup(final int swim_index){
 		  RelativeLayout viewGroup = (RelativeLayout)findViewById(R.id.popup_sl);
-   	   LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);   	   
+   	   LayoutInflater layoutInflater = (LayoutInflater) getSystemService(getApplication().LAYOUT_INFLATER_SERVICE);   	   
    	   popup_layout = layoutInflater.inflate(R.layout.popup_swims, viewGroup);
    	((EditText)popup_layout.findViewById(R.id.edSwimDescription)).setText(fm.getFishingwater().get(fishingwater_id).getSwim().get(swim_index).getDescription());
 	   ((EditText)popup_layout.findViewById(R.id.edSwimName)).setText(fm.getFishingwater().get(fishingwater_id).getSwim().get(swim_index).getName());

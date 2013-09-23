@@ -3,6 +3,7 @@ package com.fishingbuddy.logic.storage;
 import java.util.ArrayList;
 
 import com.fishingbuddy.logic.FishingWater;
+import com.fishingbuddy.logic.Swim;
 import com.google.android.gms.maps.model.LatLng;
 
 import android.content.ContentValues;
@@ -63,7 +64,17 @@ public class TableFishingWaters {
 
 		return fw;
 	}
-	
+	public int updateFishingWater(FishingWater fw) {    
+		 
+		ContentValues values = new ContentValues();
+		values.put(FW_NAME_KEY, fw.getName());
+		values.put(FW_NAME_DESCRIPTION_KEY, fw.getDescription());
+		values.put(FW_NAME_LOC_LAT_KEY, fw.getLocation().latitude);
+		values.put(FW_NAME_LOC_LONG_KEY, fw.getLocation().longitude);
+	    // updating row
+	    return db.update(FishingBuddyOpenHelper.FISHINGWATER_TABLE_NAME, values, FW_ID_KEY + " = ?",
+	            new String[] { String.valueOf(fw.getId()) });
+	}
 	public void deleteFishingWater(FishingWater fw){		
 	    db.delete(FishingBuddyOpenHelper.FISHINGWATER_TABLE_NAME, FW_ID_KEY + " = ?",
 	            new String[] { String.valueOf(fw.getId()) });	    

@@ -128,7 +128,7 @@ public class FishingWaterListActivity extends Activity {
 	
 	private void ShowPopup(final int fishingwater_index){
  	   RelativeLayout viewGroup = (RelativeLayout)findViewById(R.id.popup_fwl);
-	   LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+	   LayoutInflater layoutInflater = (LayoutInflater) getSystemService(getApplication().LAYOUT_INFLATER_SERVICE);
 	   	   
 	   popup_layout = layoutInflater.inflate(R.layout.popup_fwl, viewGroup);
 	   
