@@ -13,23 +13,34 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class FishingBuddyOpenHelper extends SQLiteOpenHelper{
-	public static final int DATABASE_VERSION = 2;
+	public static final int DATABASE_VERSION = 1;
 	// Database Name
 	public static final String DATABASE_NAME = "FishingMangager";
 
 	public static final String FISHINGWATER_TABLE_NAME = "FISHINGWATER";
 	public static final String SWIM_TABLE_NAME = "SWIM";
+	public static final String FISH_TABLE_NAME = "FISH";
 
 	private TableFishingWaters tbfw;
 	private TableSwims tbsw;
+	private TableFish tbf;
 
 	public FishingBuddyOpenHelper(Context context) {
 		super(context, DATABASE_NAME, null,
 				DATABASE_VERSION);
 		setTbfw(new TableFishingWaters(getWritableDatabase()));
 		setTbsw(new TableSwims(getWritableDatabase()));
+		setTbf(new TableFish(getWritableDatabase()));
+	}
+	public TableFish getTbf() {
+		return tbf;
 	}
 
+	public void setTbf(TableFish tbf) {
+		this.tbf = tbf;
+	}
+
+	
 	public TableFishingWaters getTbfw() {
 		return tbfw;
 	}
@@ -50,6 +61,7 @@ public class FishingBuddyOpenHelper extends SQLiteOpenHelper{
 	public void onCreate(SQLiteDatabase db) {
 		db.execSQL(TableFishingWaters.FISHINGWATER_TABLE_CREATE);
 		db.execSQL(TableSwims.SWIM_TABLE_CREATE);
+		db.execSQL(TableFish.FISH_TABLE_CREATE);
 		
 	}
 
@@ -60,6 +72,8 @@ public class FishingBuddyOpenHelper extends SQLiteOpenHelper{
 				+ FishingBuddyOpenHelper.FISHINGWATER_TABLE_NAME);
 		db.execSQL("DROP TABLE IF EXISTS "
 				+ FishingBuddyOpenHelper.SWIM_TABLE_NAME);
+		db.execSQL("DROP TABLE IF EXISTS "
+				+ FishingBuddyOpenHelper.FISH_TABLE_NAME);
 	}
 	public void deleteFwWithSwims(FishingWater fw){
 		for(Swim sw : fw.getSwim()){

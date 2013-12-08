@@ -6,7 +6,7 @@
         android:showAsAction="never"
         android:title="@string/action_settings"/>
     <item android:id="@+id/itShowSwims" android:title="Show Fishing waters"></item>
-    <item android:id="@+id/itGen" android:title="Generate items"></item>
+    <item android:id="@+id/itCreateFish" android:title="Create New Fish"></item>
     <item android:id="@+id/itMaps" android:title="Show Maps"></item>
 
 </menu>

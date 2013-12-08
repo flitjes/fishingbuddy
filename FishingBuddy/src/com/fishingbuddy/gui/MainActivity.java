@@ -98,12 +98,8 @@ public class MainActivity extends Activity implements OnClickListener {
 					FishingWaterListActivity.class);
 			startActivity(fwl_activity);
 			return true;
-		case R.id.itGen:
-			//GenerateData();
-			/*
-			 * JSONWeatherTask task = new JSONWeatherTask(); task.execute(new
-			 * GPSManager(this).getLocation());
-			 */
+		case R.id.itCreateFish:
+			ShowFishPopup();
 			return true;
 		case R.id.itMaps:
 			Intent fishingmaps_activity = new Intent(this, FishingMaps.class);
@@ -113,33 +109,8 @@ public class MainActivity extends Activity implements OnClickListener {
 		}
 	}
 
-	private boolean created = false;
-
-	/*private void GenerateData() {
-		if (!created) {			
-			GPSManager gpsm = new GPSManager(this);
-			int x = 0, y = 1;
-
-			fm.CreateFishingWater("Den Bosch", gpsm.getLocation(), "blabla");
-			fm.CreateFishingWater("Dommel", new LatLng(51.6635, 5.3046),
-					"blabla");
-			fm.CreateFishingWater("Biescheloop", new LatLng(51.6451, 5.3201),
-					"blabla");
-			fm.CreateSwimForFishingWater((fm.getFishingwater().size() - 3),
-					"ZuiderPlas", new LatLng(51.674, 5.319), "Fuckedup fishing");
-			fm.CreateSwimForFishingWater((fm.getFishingwater().size() - 3),
-					"Provinciehuis", new LatLng(51.677, 5.331),
-					"Fuckedup fishing");
-			fm.CreateSwimForFishingWater((fm.getFishingwater().size() - 2),
-					"A2", new LatLng(51.6644, 5.3053), "Fuckedup fishing");
-			fm.CreateSwimForFishingWater((fm.getFishingwater().size() - 1),
-					"Biescheloop", new LatLng(51.6478, 5.3200),
-					"Fuckedup fishing");
-			created = true;	
-			
-
-		}
-	}*/
+	
+	
 
 	private class JSONWeatherTask extends AsyncTask<LatLng, Void, Weather> {
 
@@ -393,6 +364,49 @@ public class MainActivity extends Activity implements OnClickListener {
 					}
 				});
           popup.showAtLocation(findViewById(R.id.btnCatch), Gravity.CENTER, 0, 0);
+	}
+	private void ShowFishPopup(){
+		   RelativeLayout viewGroup = (RelativeLayout)findViewById(R.id.popup_fish);
+	   	   LayoutInflater layoutInflater = (LayoutInflater) getSystemService(getApplication().LAYOUT_INFLATER_SERVICE);
+	   	   final View popup_layout = layoutInflater.inflate(R.layout.popup_fish, viewGroup);
+	   	 
+	   	   // Creating the PopupWindow
+	   	   final PopupWindow popup = new PopupWindow(this);
+	   	   popup.setContentView(popup_layout);
+	   	   popup.setWidth(LayoutParams.WRAP_CONTENT);
+	   	   popup.setHeight(LayoutParams.WRAP_CONTENT);
+	   	   popup.setFocusable(true);            	 
+	   	  
+	   	 
+	   	   // Clear the default translucent background
+	   	   popup.setBackgroundDrawable(new BitmapDrawable());
+	   	   
+	              Button btn_ok = (Button) popup_layout.findViewById(R.id.btn_popup_fish_ok);
+	              Button btn_cancel = (Button) popup_layout.findViewById(R.id.btn_popup_fish_cancel);		                   
+	              
+	              btn_ok.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						String fish_name, fish_description;
+						fish_name = ((EditText)popup_layout.findViewById(R.id.edFishName)).getText().toString();
+						fish_description = ((EditText)popup_layout.findViewById(R.id.edFishDescription)).getText().toString();
+			            			            
+			            fm.CreateFish(fish_name, fish_description);
+			            popup.dismiss();				            
+						
+					}
+				});
+	              
+	              btn_cancel.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						popup.dismiss();							
+						
+					}
+				});
+       popup.showAtLocation(findViewById(R.id.btnCatch), Gravity.CENTER, 0, 0);
 	}
 
 }

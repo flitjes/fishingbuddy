@@ -86,7 +86,7 @@ public class TableSwims {
 	}
 	
 	public void deleteSwim(Swim sw){		
-	    db.delete(FishingBuddyOpenHelper.FISHINGWATER_TABLE_NAME, SW_ID_KEY + " = ?",
+	    db.delete(FishingBuddyOpenHelper.SWIM_TABLE_NAME, SW_ID_KEY + " = ?",
 	            new String[] { String.valueOf(sw.getdbSwim_id()) });	    
 	}
 	@Override

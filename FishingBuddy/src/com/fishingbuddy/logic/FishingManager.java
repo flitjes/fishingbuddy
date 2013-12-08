@@ -10,12 +10,13 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.fishingbuddy.logic.Gear.Gear;
 import com.fishingbuddy.logic.storage.FishingBuddyOpenHelper;
+import com.google.android.gms.internal.db;
+import com.google.android.gms.internal.fd;
 import com.google.android.gms.maps.model.LatLng;
 
 public class FishingManager extends Application{	
 	private List<FishingWater> fishingwater = new ArrayList<FishingWater>();
-	private static Fisherman fisherman = null;
-	private List<Fish> all_known_fish = new ArrayList<Fish>();
+	private static Fisherman fisherman = null;	
 	private GPSManager gpsm = new GPSManager(this);	
 	private List<Catch> catches = new ArrayList<Catch>();
 	private Gear gear = new Gear();
@@ -30,7 +31,7 @@ public class FishingManager extends Application{
 	}
 	public FishingManager() {		
 		/*Get all known fish*/
-		fillListWithFish();
+		//fillListWithFish();
 		
 	}
 	public boolean CreateFisherman(String name, Date birthday){
@@ -101,6 +102,10 @@ public class FishingManager extends Application{
 		Update();
 		return true;
 	}
+	public void CreateFish(String name, String description){
+		Fish f = new Fish(name,description);
+		fbdbhelper.getTbf().addSwim(f);
+	}
 	
 	public List<FishingWater> getFishingwater() {
 		return fishingwater;
@@ -108,26 +113,28 @@ public class FishingManager extends Application{
 	public void setFishingwater(List<FishingWater> fishingwater) {
 		this.fishingwater = fishingwater;
 	}
+	
 	private boolean fillListWithFish()
-	{
-		/*Todo: Get a list with all fish from somehwere*/
-		boolean done = false;
-		Fish f = new Fish("Carp");		
-		all_known_fish.add(f);
-		f = new Fish("Mirror Carp");
-		all_known_fish.add(f);
-		f = new Fish("Grass Carp");
-		all_known_fish.add(f);
-		return done;
+	{		
+		CreateFish("Carp","");		
+		CreateFish("Grass Carp","");
+		CreateFish("Mirror Carp","");		
+		return true;
 	}
 
 	public List<Fish> getAll_known_fish() {
-		return all_known_fish;
+		ArrayList<Fish> allFish = fbdbhelper.getTbf().getFish();
+		if(allFish.size() == 0){
+			fillListWithFish();
+			allFish = fbdbhelper.getTbf().getFish();
+		}
+		
+		return allFish;
 	}
 
-	public void setAll_known_fish(List<Fish> all_known_fish) {
+	/*public void setAll_known_fish(List<Fish> all_known_fish) {
 		this.all_known_fish = all_known_fish;
-	}
+	}*/
 
 	public List<Catch> getCatches() {
 		return catches;
