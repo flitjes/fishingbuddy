@@ -21,6 +21,9 @@ public class Gear {
 		bait.add(new Bait(BAITTYPE.Boilie, "ScopexCream", 15));
 		bait.add(new Bait(BAITTYPE.Boilie, "PineAppleCream", 15));
 		hook_bait.add(new HookBait(BAITTYPE.Boilie, "BoilieMan", 15));
+		hook_bait.add(new HookBait(BAITTYPE.Plug, "Plug", 15));
+		hook_bait.add(new HookBait(BAITTYPE.Spinner, "Spinner", 15));
+		hook_bait.add(new HookBait(BAITTYPE.Shad, "Shad", 15));
 		hook_bait.add(new HookBait(BAITTYPE.Boilie, "Scopex", 15));
 		hook_bait.add(new HookBait(BAITTYPE.Boilie, "PineAppleCream", 15));
 		hook_bait.add(new HookBait(BAITTYPE.POPUP, "Liver", 15));

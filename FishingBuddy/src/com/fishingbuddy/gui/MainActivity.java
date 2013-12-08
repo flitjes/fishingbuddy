@@ -38,6 +38,8 @@ import com.fishingbuddy.logic.FishingWater;
 import com.fishingbuddy.logic.GPSManager;
 import com.fishingbuddy.logic.Swim;
 import com.fishingbuddy.logic.Gear.Bait;
+import com.fishingbuddy.logic.Gear.BaitSuperClass;
+import com.fishingbuddy.logic.Gear.BaitSuperClass.BAITTYPE;
 import com.fishingbuddy.logic.Gear.HookBait;
 import com.fishingbuddy.logic.Gear.Rig;
 import com.fishingbuddy.logic.Weather.JSONWeatherParser;
@@ -256,10 +258,22 @@ public class MainActivity extends Activity implements OnClickListener {
 						case HOOKBAIT:
 							catch_current.setHookbait(fm.getGear()
 									.getHook_bait().get(which));
+							BAITTYPE baittype = catch_current.getHookbait().getBait_type();
+							/*If the baittype is a predator bait skip rig and bait */
+							if(baittype == BAITTYPE.Plug || baittype == BAITTYPE.Spinner || baittype == BAITTYPE.Shad){
+								/* Choose Water */
+								for (FishingWater fw : fm.getFishingwater()) {
+									items.add(fw.getName());
+								}
+								ShowAlertPickingItem(items, DISPLAY_TYPE.WATER);
+								break;
+							}
+								
+							
 							/* Choose Rig */
 							for (Rig r : fm.getGear().getRigz()) {
 								items.add(r.getName());
-							}
+							}							
 							ShowAlertPickingItem(items, DISPLAY_TYPE.RIG);
 							break;
 

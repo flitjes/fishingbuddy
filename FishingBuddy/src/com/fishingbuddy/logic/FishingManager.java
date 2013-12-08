@@ -118,7 +118,10 @@ public class FishingManager extends Application{
 	{		
 		CreateFish("Carp","");		
 		CreateFish("Grass Carp","");
-		CreateFish("Mirror Carp","");		
+		CreateFish("Mirror Carp","");
+		CreateFish("Bream","");
+		CreateFish("Pike","");
+		CreateFish("Bass","");		
 		return true;
 	}
 
