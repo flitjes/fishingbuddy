@@ -1,8 +1,0 @@
-export PYTHONPATH=/opt/local/lib/python2.5/site-packages
-set symlink correct for python command
-
-https://github.com/tweepy/tweepy
-https://github.com/tweepy/tweepy.git
-install python-setuptools
-python setup.py install
-edit oath example
